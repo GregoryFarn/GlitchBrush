@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package glitchbrush;
+package application;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -22,7 +22,7 @@ public class GlitchBrush extends Application {
     @Override
     public void start(Stage primaryStage) {
         Button btn = new Button();
-        btn.setText("Say 'Hello World'");
+        btn.setText("START GLITCH BRUSH");
         btn.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
@@ -36,8 +36,9 @@ public class GlitchBrush extends Application {
         
         Scene scene = new Scene(root, 300, 250);
         
-        primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("Glitch Brush");
         primaryStage.setScene(scene);
+        primaryStage.setFullScreen(true);
         primaryStage.show();
     }
 
