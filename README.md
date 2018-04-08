@@ -14,3 +14,9 @@ Currently Working on:
 Image saving to database functionality - Qianze
 
 Working on next:
+
+Finished: Basic Class Hierarchy for tools - Gregory
+
+Currently Working On: Selection box functionality with graphicsContext - Gregory
+
+Working on next: Class structure for filters - Gregory
