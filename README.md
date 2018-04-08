@@ -15,11 +15,6 @@ Image saving to database functionality - Qianze
 
 Working on next:
 
-Finished: Basic Class Hierarchy for tools - Gregory
-
-Currently Working On: Selection box functionality with graphicsContext - Gregory
-
-Working on next: Class structure for filters - Gregory
 
 <b> APRIL 8</b>
 <br>
@@ -32,3 +27,9 @@ Learning more about JavaFX - Emily
 
 WORKING ON NEXT: <br>
 Adding signup/login button functionality (backend checking user) - Emily
+
+Finished: Basic Class Hierarchy for tools - Gregory
+
+Currently Working On: Selection box functionality with graphicsContext - Gregory
+
+Working on next: Class structure for filters - Gregory
