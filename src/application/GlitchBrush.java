@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -29,16 +30,14 @@ public class GlitchBrush extends Application {
 	selectionBox selection;
     @Override
     public void start(Stage primaryStage) throws Exception{
-    	StackPane root = new StackPane();
+    	Group root = new Group();
     	Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
     	Scene scene = new Scene(root,screenBounds.getWidth(),screenBounds.getHeight());
         primaryStage.setTitle("Glitch Brush");
         primaryStage.setScene(scene);
         primaryStage.setFullScreen(true);
-        selectionBox sb = new selectionBox(scene);
+        selectionBox sb = new selectionBox(root,scene);
         root.getChildren().add(sb.getCanvas());
-        root.setStyle("-fx-background-color: red");
-
         primaryStage.show();
         
     }
