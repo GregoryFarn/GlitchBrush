@@ -9,14 +9,15 @@ task - name
 
 FINISHED: <br>
 Created the Launch Page image - Emily
-Basic Class Hierarchy for tools - Gregory
-
+Basic Class Hierarchy for SelectionBox - Gregory
+Selection box functionality with graphicsContext - Gregory
+Selection Box functionality with Rectangle object - Gregory
 
 CURRENTLY WORKING ON: <br>
 Learning more about JavaFX - Emily
-Selection box functionality with graphicsContext - Gregory
 Image saving to database functionality - Qianze
+Filter Functionality - Gregory
 
 WORKING ON NEXT: <br>
 Adding signup/login button functionality (backend checking user) - Emily
-Class structure for filters - Gregory
+Filter class Structure - Gregory
