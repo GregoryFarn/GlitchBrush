@@ -39,6 +39,10 @@ public class pixelSort {
 	    iv.setX(x);
 	    }
 	    
+	    public void sort(selectionBox sb) {
+	    	
+	    }
+	    
 	}
 
 }

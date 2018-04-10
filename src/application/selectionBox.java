@@ -16,6 +16,8 @@ import javafx.scene.shape.Rectangle;
 public class selectionBox {
 	private double startX;
 	private double startY;
+	private double endX;
+	private double endY;
 
 	private GraphicsContext gc;
 	private Canvas cs;
@@ -34,6 +36,8 @@ public class selectionBox {
 		rect.getStrokeDashArray().addAll(2d);
 		root.getChildren().add(rect);
 		root.getChildren().add(cs);
+		endX = -1;
+		endY = -1;
 		cs.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent e) {
@@ -50,7 +54,7 @@ public class selectionBox {
 		cs.addEventHandler(MouseEvent.MOUSE_DRAGGED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent e) {
-				updateSize(e.getX(), e.getY());
+				updateSize(e.getX(), e.getY(), e);
 
 			}
 		});
@@ -64,23 +68,33 @@ public class selectionBox {
 				rect.setY(y);
 				rect.setWidth(startX - x);
 				rect.setHeight(startY - y);
+				endX = startX;
+				endY = startY;
+
 			} else {
 				rect.setX(x);
 				rect.setWidth(startX - x);
 				rect.setHeight(y - startY);
+				endX = startX;
+				endY = y;
 			}
 		} else {
 			if (startY > y) {
 				rect.setY(y);
 				rect.setWidth(x - startX);
 				rect.setHeight(startY - y);
+				endY = startY;
+				endX = x;
 			} else {
 				rect.setX(startX);
 				rect.setY(startY);
 				rect.setHeight(y - startY);
 				rect.setWidth(x - startX);
+				endX = x;
+				endY = y;
 			}
 		}
+
 	}
 
 	public double getStartX() {
@@ -89,6 +103,15 @@ public class selectionBox {
 
 	public double getStartY() {
 		return startY;
+	}
+
+	public double getEndX() {
+		return endX;
+	}
+
+	public double getEndY() {
+
+			return endY;
 	}
 
 	public Canvas getCanvas() {
