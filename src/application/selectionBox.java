@@ -27,27 +27,34 @@ public class selectionBox {
 		this.root = root;
 		this.scene = scene;
 		cs = new Canvas(scene.getWidth(), scene.getHeight());
+		rect = new Rectangle(0, 0, 0, 0);
+		rect.setFill(Color.TRANSPARENT);
+		rect.setStroke(Color.TRANSPARENT);
+		rect.setStrokeWidth(1);
+		rect.getStrokeDashArray().addAll(2d);
+		root.getChildren().add(rect);
 		cs.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent e) {
-				startX = e.getX();
-				startY = e.getY();
-				rect = new Rectangle(e.getX(), e.getY(), 0, 0);
-				rect.setFill(Color.TRANSPARENT);
-				rect.setStroke(Color.GREY);
-				rect.setStrokeWidth(1);	
-				rect.getStrokeDashArray().addAll(2d);
-				root.getChildren().add(rect);
-
+			
+					startX = e.getX();
+					startY = e.getY();
+					rect.setX(startX);
+					rect.setY(startY);
+					rect.setHeight(0);
+					rect.setWidth(0);
+					rect.setStroke(Color.GREY);
 			}
 		});
 		cs.addEventHandler(MouseEvent.MOUSE_DRAGGED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent e) {
 				updateSize(e.getX(), e.getY());
-				// drawBox();
+
 			}
 		});
+		
+
 	}
 
 	public void updateSize(double x, double y) {
@@ -60,7 +67,7 @@ public class selectionBox {
 			} else {
 				rect.setX(x);
 				rect.setWidth(startX - x);
-				rect.setHeight(y-startY);
+				rect.setHeight(y - startY);
 			}
 		} else {
 			if (startY > y) {
@@ -76,24 +83,6 @@ public class selectionBox {
 		}
 	}
 
-	/*public void endActive() {
-		gc.clearRect(startX, startY, endX, endY);
-		gc.clearRect(endX, endY, startX, startY);
-		gc.clearRect(startX, endY, endX, startY);
-		gc.clearRect(endX, startY, startX, endY);
-		startX = 0;
-		startY = 0;
-		endX = 0;
-		endY = 0;
-	}
-
-	public void drawBox() {
-		gc.strokeLine(startX, startY, startX, endY);
-		gc.strokeLine(startX, startY, endX, startY);
-		gc.strokeLine(endX, endY, startX, endY);
-		gc.strokeLine(endX, endY, endX, startY);
-	}*/
-
 	public double getStartX() {
 		return startX;
 	}
@@ -101,7 +90,6 @@ public class selectionBox {
 	public double getStartY() {
 		return startY;
 	}
-
 
 	public Canvas getCanvas() {
 		return cs;
