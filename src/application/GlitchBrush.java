@@ -27,7 +27,6 @@ import javafx.stage.Stage;
  * @author 007fa
  */
 public class GlitchBrush extends Application {
-	selectionBox selection;
     @Override
     public void start(Stage primaryStage) throws Exception{
     	Group root = new Group();
@@ -36,8 +35,8 @@ public class GlitchBrush extends Application {
         primaryStage.setTitle("Glitch Brush");
         primaryStage.setScene(scene);
         primaryStage.setFullScreen(true);
+        pixelSort pS = new pixelSort(root,scene,"photo.jpg");
         selectionBox sb = new selectionBox(root,scene);
-        root.getChildren().add(sb.getCanvas());
         primaryStage.show();
         
     }

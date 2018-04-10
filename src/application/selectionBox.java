@@ -33,17 +33,18 @@ public class selectionBox {
 		rect.setStrokeWidth(1);
 		rect.getStrokeDashArray().addAll(2d);
 		root.getChildren().add(rect);
+		root.getChildren().add(cs);
 		cs.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent e) {
-			
-					startX = e.getX();
-					startY = e.getY();
-					rect.setX(startX);
-					rect.setY(startY);
-					rect.setHeight(0);
-					rect.setWidth(0);
-					rect.setStroke(Color.GREY);
+
+				startX = e.getX();
+				startY = e.getY();
+				rect.setX(startX);
+				rect.setY(startY);
+				rect.setHeight(0);
+				rect.setWidth(0);
+				rect.setStroke(Color.GREY);
 			}
 		});
 		cs.addEventHandler(MouseEvent.MOUSE_DRAGGED, new EventHandler<MouseEvent>() {
@@ -53,7 +54,6 @@ public class selectionBox {
 
 			}
 		});
-		
 
 	}
 
