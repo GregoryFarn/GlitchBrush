@@ -24,16 +24,16 @@ public class selectionBox {
 	private Scene scene;
 	private Rectangle rect;
 	private Group root;
-
+private pixelSort ps;
 	public selectionBox(Group root, Scene scene) {
 		this.root = root;
 		this.scene = scene;
-		cs = new Canvas(scene.getWidth(), scene.getHeight());
 		rect = new Rectangle(0, 0, 0, 0);
 		rect.setFill(Color.TRANSPARENT);
 		rect.setStroke(Color.TRANSPARENT);
 		rect.setStrokeWidth(1);
 		rect.getStrokeDashArray().addAll(2d);
+		cs = new Canvas(scene.getWidth(),scene.getHeight());
 		root.getChildren().add(rect);
 		root.getChildren().add(cs);
 		endX = -1;
@@ -54,10 +54,16 @@ public class selectionBox {
 		cs.addEventHandler(MouseEvent.MOUSE_DRAGGED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent e) {
-				updateSize(e.getX(), e.getY(), e);
+				updateSize(e.getX(), e.getY());
 
 			}
 		});
+		/*cs.addEventHandler(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent e) {
+				pixelSort();
+			}
+		});*/
 
 	}
 
@@ -116,5 +122,8 @@ public class selectionBox {
 
 	public Canvas getCanvas() {
 		return cs;
+	}
+	public void pixelSort() {
+		ps.pSort(this);
 	}
 }

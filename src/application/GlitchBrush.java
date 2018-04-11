@@ -35,7 +35,9 @@ public class GlitchBrush extends Application {
         primaryStage.setTitle("Glitch Brush");
         primaryStage.setScene(scene);
         primaryStage.setFullScreen(true);
-        pixelSort pS = new pixelSort(root,scene,"photo.jpg");
+        //pixelSort pS = new pixelSort(root,scene,"photo.jpg");
+
+        //photo p = new photo(root,scene,"photo.jpg");
         selectionBox sb = new selectionBox(root,scene);
         primaryStage.show();
         
