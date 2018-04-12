@@ -42,9 +42,20 @@ Create Pixel Sorter - Gregory <br>
 
 FINISHED: <br>
 Launch page GUI and logic - Emily <br>
+Photo Class - Gregory
 
 CURRENTLY WORKING ON: <br>
 Backend logic for networking (allowing two users to edit the same photo at one time) - Qianze <br>
 Integrating SQL for login/signup - Emily <br>
+Pixel Sorting Logic - Gregory
 
 WORKING ON NEXT: <br>
+Integrating Selection Box and Filter - Gregory
+
+:::APRIL 12:::
+
+FINISHED:
+
+CURRENTLY WORKING ON:
+
+WORKING ON NEXT:
