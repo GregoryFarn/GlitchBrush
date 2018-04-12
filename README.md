@@ -36,3 +36,13 @@ Working on manipulating individual pixels - Gregory<br>
 
 WORKING ON NEXT: <br>
 Create Pixel Sorter - Gregory
+
+<b> APRIL 11 </b>
+<br>
+
+FINISHED: <br>
+
+CURRENTLY WORKING ON: <br>
+Backend logic for networking (allowing two users to edit the same photo at one time) - Qianze <br>
+
+WORKING ON NEXT: <br>
