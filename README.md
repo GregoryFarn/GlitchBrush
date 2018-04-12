@@ -12,6 +12,8 @@ Created the Launch Page image - Emily <br>
 Basic Class Hierarchy for SelectionBox - Gregory<br>
 Selection box functionality with graphicsContext - Gregory<br>
 Selection Box functionality with Rectangle object - Gregory<br>
+login page (front end) - Eli<br>
+direct page with functionality and front end - Eli<br>
 
 CURRENTLY WORKING ON: <br>
 Learning more about JavaFX - Emily<br>
