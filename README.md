@@ -22,7 +22,7 @@ Working on filter functionality - Gregory
 
 WORKING ON NEXT: <br>
 Adding signup/login button functionality (backend checking user) - Emily<br>
-Create filter class structure - Gregory
+Create filter class structure - Gregory <br>
 
 <b> APRIL 10 </b>
 <br>
@@ -35,14 +35,16 @@ Adding launch page, login/signup functionality - Emily <br>
 Working on manipulating individual pixels - Gregory<br>
 
 WORKING ON NEXT: <br>
-Create Pixel Sorter - Gregory
+Create Pixel Sorter - Gregory <br>
 
 <b> APRIL 11 </b>
 <br>
 
 FINISHED: <br>
+Launch page GUI and logic - Emily <br>
 
 CURRENTLY WORKING ON: <br>
 Backend logic for networking (allowing two users to edit the same photo at one time) - Qianze <br>
+Integrating SQL for login/signup - Emily <br>
 
 WORKING ON NEXT: <br>
