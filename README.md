@@ -52,11 +52,12 @@ Pixel Sorting Logic - Gregory
 WORKING ON NEXT: <br>
 Integrating Selection Box and Filter - Gregory
 
-:::APRIL 12:::
+<b>APRIL 12</b>
 
-FINISHED:
-Integration between selection box and pixel sort -Gregory
+FINISHED: <br>
+Integration between selection box and pixel sort -Gregory <br>
+Pushed - Emily<br>
 
-CURRENTLY WORKING ON:
+CURRENTLY WORKING ON:<br>
 
-WORKING ON NEXT:
+WORKING ON NEXT:<br>

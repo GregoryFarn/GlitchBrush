@@ -1,0 +1,39 @@
+#LogIn .text{
+	-fx-font-family: "Desdemona";
+	-fx-font-size: 60px;
+	position: relative;
+}
+#SignUp .text{
+	-fx-font-family: "Desdemona";
+	-fx-font-size: 60px;
+	position: relative;
+}
+
+#liUsername{
+	border: none;
+	border-bottom: 2px;
+}
+
+#liSubmit .text{
+	-fx-text-fill: #000000;
+	-fx-font-size: 30px;
+	-fx-font-family: "Desdemona";
+}
+
+#liSubmit:hover .text{
+	-fx-text-fill: #000000;
+	-fx-strikethrough: true;
+	-fx-underline: false;
+}
+
+
+#suSubmit .text{
+	-fx-text-fill: #000000;
+	-fx-font-size: 30px;
+	-fx-font-family: "Desdemona";
+}
+#suSubmit:hover .text{
+	-fx-text-fill: #000000;
+	-fx-strikethrough: true;
+	-fx-underline: false;
+}

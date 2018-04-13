@@ -1,0 +1,23 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+#pane{
+    -fx-background-image: url("LaunchPage.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 1200 800;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
+}
+
+#suli .text{
+	-fx-text-fill: #FFFFFF;
+	-fx-font-size: 160px;
+	-fx-stroke: white;
+   -fx-font-family: "Desdemona";
+}
+
+#suli:hover .text{
+	-fx-text-fill: #FFFFFF;
+	-fx-stroke: white;
+	-fx-strikethrough: true;
+	-fx-underline: false;
+}
