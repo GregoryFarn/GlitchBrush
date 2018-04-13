@@ -1,5 +1,10 @@
 package application;
 
+import java.sql.Statement;
+import java.sql.PreparedStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javafx.application.Application;
@@ -180,6 +185,46 @@ public class SignUpLogIn extends Application {
    	 suSubmit.setBorder(Border.EMPTY);
    	 suSubmit.setTextFill(Color.BLACK);
    	 suSubmit.setId("suSubmit");
+   	 
+   	 suSubmit.setOnAction(new EventHandler<ActionEvent>() {
+   	   	 @Override
+   	        public void handle(ActionEvent event) {
+   	   		 	//verify
+   	   		 
+   	   		 String driverClassName = "com.mysql.jdbc.Driver";
+   	   		 String dbURL = "jdbc:mysql://localhost/GlitchUsers?user=root&password=root&useSSL=false";
+   	   		 
+   	   		 try {
+   		//		dataAccessor = new UserDataAccessor(driverClassName, dbURL);
+   				
+   				Connection conn = null; //create the connection to database
+   				Statement st = null; //executes any sql command
+   				PreparedStatement ps = null;
+   				
+   				
+   				Class.forName(driverClassName);
+   				conn = DriverManager.getConnection(dbURL);
+   				st = conn.createStatement();
+   				ps = conn.prepareStatement("INSERT INTO Users (username,password,email) VALUES('" 
+   			   								+ suUsername.getText() + "','" + suPassword.getText() + "','" 
+   			   								+ suEmail.getText() + "')");
+   				
+   				System.out.println("User added: '\t username: " + suUsername.getText() + "\t pass: " + suPassword.getText() 
+   						+ "\t email: " + suEmail.getText());
+   				ps.executeUpdate();
+   			   	conn.close();
+   			   	 
+   				
+   			} catch (ClassNotFoundException | SQLException e) {
+   				// TODO Auto-generated catch block
+   				System.out.println("error: " + e.getMessage());
+   			} // provide driverName, dbURL, user, password...
+   	   		 
+   	        }
+   	   	 });
+   	 
+   	 
+   
    	 
    	 
    	 StackPane root = new StackPane();
