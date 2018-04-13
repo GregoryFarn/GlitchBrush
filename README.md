@@ -61,11 +61,8 @@ Did work bench front end - Eli<br>
 New project page - Eli<br>
 User page - Eli<br>
 
-CURRENTLY WORKING ON: Creating new filters with data structures - Gregory 
-
-WORKING ON NEXT: 
-=======
-CURRENTLY WORKING ON:<br>
+CURRENTLY WORKING ON: <br>
+Creating new filters with data structures - Gregory <br>
 Login - Emily <br>
 
 WORKING ON NEXT:<br>
