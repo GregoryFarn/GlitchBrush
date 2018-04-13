@@ -1,11 +1,9 @@
 package application;
 
 import javafx.event.EventHandler;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -16,41 +14,40 @@ import javafx.scene.shape.Rectangle;
 public class selectionBox {
 	private double startX;
 	private double startY;
-<<<<<<< HEAD
 	private double endX;
 	private double endY; 
 	private double topY;
 	private double topX;
 	private double bottomX;
 	private double bottomY;
-=======
 
-	private GraphicsContext gc;
->>>>>>> 54dfc6983df21aa0ed368d99b0c86041e3e8573d
 	private Canvas cs;
-	private Scene scene;
 	private Rectangle rect;
-	private Group root;
-
-	public selectionBox(Group root, Scene scene) {
-		this.root = root;
-		this.scene = scene;
+	private photo p;
+	public selectionBox(Group root, Scene scene, photo p) {
+		this.p = p;
 		cs = new Canvas(scene.getWidth(), scene.getHeight());
 		rect = new Rectangle(0, 0, 0, 0);
 		rect.setFill(Color.TRANSPARENT);
 		rect.setStroke(Color.TRANSPARENT);
 		rect.setStrokeWidth(1);
 		rect.getStrokeDashArray().addAll(2d);
+		cs = new Canvas(p.getWidth(), p.getHeight());
+		cs.setLayoutX(p.getX());
+		cs.setLayoutY(p.getY());
+
 		root.getChildren().add(rect);
 		root.getChildren().add(cs);
+		endX = -1;
+		endY = -1;
 		cs.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent e) {
 
 				startX = e.getX();
 				startY = e.getY();
-				rect.setX(startX);
-				rect.setY(startY);
+				rect.setX(startX + p.getX());
+				rect.setY(startY + p.getY());
 				rect.setHeight(0);
 				rect.setWidth(0);
 				rect.setStroke(Color.GREY);
@@ -60,16 +57,12 @@ public class selectionBox {
 			@Override
 			public void handle(MouseEvent e) {
 				updateSize(e.getX(), e.getY());
-<<<<<<< HEAD
 			}
 		});
 		cs.addEventHandler(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent e) {
 				pixelSort();
-=======
-
->>>>>>> 54dfc6983df21aa0ed368d99b0c86041e3e8573d
 			}
 		});
 
@@ -78,25 +71,50 @@ public class selectionBox {
 	public void updateSize(double x, double y) {
 		if (startX > x) {
 			if (startY > y) {
-				rect.setX(x);
-				rect.setY(y);
+				topX=x;
+				topY= y;
+				bottomX = startX;
+				bottomY = startY;
+				rect.setX(x + p.getX());
+				rect.setY(y + p.getY());
 				rect.setWidth(startX - x);
 				rect.setHeight(startY - y);
+				endX = startX;
+				endY = startY;
 			} else {
-				rect.setX(x);
+				topX=x;
+				topY= startY;
+				bottomX = startX;
+				bottomY = y;
+				rect.setX(x + p.getX());
 				rect.setWidth(startX - x);
 				rect.setHeight(y - startY);
+				endX = startX;
+				endY = y;
+				
 			}
 		} else {
 			if (startY > y) {
-				rect.setY(y);
+				topX=startX;
+				topY= y;
+				bottomX = x;
+				bottomY = startY;
+				rect.setY(y + p.getY());
 				rect.setWidth(x - startX);
 				rect.setHeight(startY - y);
+				endY = startY;
+				endX = x;
 			} else {
-				rect.setX(startX);
-				rect.setY(startY);
+				topX=startX;
+				topY= startY;
+				bottomX = x;
+				bottomY = y;
+				rect.setX(startX + p.getX());
+				rect.setY(startY + p.getY());
 				rect.setHeight(y - startY);
 				rect.setWidth(x - startX);
+				endX = x;
+				endY = y;
 			}
 		}
 	}
@@ -111,5 +129,32 @@ public class selectionBox {
 
 	public Canvas getCanvas() {
 		return cs;
+	}
+	public double getEndX() {
+		return endX;
+	}
+
+	public double getEndY() {
+
+		return endY;
+	}
+	public double getTopX() {
+
+		return topX;
+	}
+	public double getTopY() {
+
+		return topY;
+	}
+	public double getBottomX() {
+
+		return bottomX;
+	}
+	public double getBottomY() {
+
+		return bottomY;
+	}
+	public void pixelSort() {
+		pixelSort.pSort(this, p);
 	}
 }
