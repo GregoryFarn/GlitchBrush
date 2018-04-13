@@ -70,9 +70,6 @@ WORKING ON NEXT:<br>
 <b> APRIL 13</b>
 <br>
 FINISHED: <br>
-Did work bench front end - Eli<br>
-New project page - Eli<br>
-User page - Eli<br>
 Full login and signup functionality - Emily <br>
 
 CURRENTLY WORKING ON:<br>
