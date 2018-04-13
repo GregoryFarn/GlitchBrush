@@ -1,0 +1,21 @@
+#importButton .text{
+	-fx-text-fill: #000000;
+	-fx-font-size: 100px;
+   -fx-font-family: "Desdemona";
+}
+
+#importButton:hover .text{
+	-fx-text-fill: #000000;
+	-fx-strikethrough: true;
+	-fx-underline: false;
+}
+
+#nameField{
+	-fx-text-box-border: transparent;
+	border-bottom: 2px;
+}
+#nameField .text{
+	-fx-text-fill: #000000;
+	-fx-font-size: 50px;
+   -fx-font-family: "Desdemona";
+}
