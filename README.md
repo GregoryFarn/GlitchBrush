@@ -52,11 +52,17 @@ Pixel Sorting Logic - Gregory
 WORKING ON NEXT: <br>
 Integrating Selection Box and Filter - Gregory
 
-:::APRIL 12:::
+<b>APRIL 12</b>
 
-FINISHED:
-Integration between selection box and pixel sort -Gregory
+FINISHED: <br>
+Integration between selection box and pixel sort -Gregory <br>
+Signup can pull data from SQL file - Emily<br>
 
 CURRENTLY WORKING ON: Creating new filters with data structures - Gregory 
 
 WORKING ON NEXT: 
+=======
+CURRENTLY WORKING ON:<br>
+Login - Emily <br>
+
+WORKING ON NEXT:<br>

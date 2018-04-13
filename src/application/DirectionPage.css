@@ -1,0 +1,23 @@
+#suli .text{
+	-fx-text-fill: #000000;
+	-fx-font-size: 130px;
+   -fx-font-family: "Desdemona";
+}
+
+#suli:hover .text{
+	-fx-text-fill: #000000;
+	-fx-strikethrough: true;
+	-fx-underline: false;
+}
+
+#importPhoto .text{
+	-fx-text-fill: #000000;
+	-fx-font-size: 130px;
+   -fx-font-family: "Desdemona";
+}
+
+#importPhoto:hover .text{
+	-fx-text-fill: #000000;
+	-fx-strikethrough: true;
+	-fx-underline: false;
+}
