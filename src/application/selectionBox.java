@@ -15,7 +15,7 @@ public class selectionBox {
 	private double startX;
 	private double startY;
 	private double endX;
-	private double endY;
+	private double endY; 
 	private double topY;
 	private double topX;
 	private double bottomX;
@@ -56,7 +56,6 @@ public class selectionBox {
 			@Override
 			public void handle(MouseEvent e) {
 				updateSize(e.getX(), e.getY());
-				System.out.println(e.getX() + " " + e.getY());
 			}
 		});
 		cs.addEventHandler(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {

@@ -57,6 +57,6 @@ Integrating Selection Box and Filter - Gregory
 FINISHED:
 Integration between selection box and pixel sort -Gregory
 
-CURRENTLY WORKING ON:
+CURRENTLY WORKING ON: Creating new filters with data structures - Gregory 
 
-WORKING ON NEXT:
+WORKING ON NEXT: 
