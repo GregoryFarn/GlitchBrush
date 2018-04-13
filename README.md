@@ -56,8 +56,9 @@ Integrating Selection Box and Filter - Gregory
 
 FINISHED: <br>
 Integration between selection box and pixel sort -Gregory <br>
-Pushed - Emily<br>
+Signup can pull data from SQL file - Emily<br>
 
 CURRENTLY WORKING ON:<br>
+Login - Emily <br>
 
 WORKING ON NEXT:<br>
