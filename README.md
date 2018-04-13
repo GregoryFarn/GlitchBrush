@@ -57,8 +57,26 @@ Integrating Selection Box and Filter - Gregory
 FINISHED: <br>
 Integration between selection box and pixel sort -Gregory <br>
 Signup can pull data from SQL file - Emily<br>
+Did work bench front end - Eli<br>
+New project page - Eli<br>
+User page - Eli<br>
 
 CURRENTLY WORKING ON:<br>
 Login - Emily <br>
 
 WORKING ON NEXT:<br>
+<br>
+
+<b> APRIL 13</b>
+<br>
+FINISHED: <br>
+Did work bench front end - Eli<br>
+New project page - Eli<br>
+User page - Eli<br>
+Full login and signup functionality - Emily <br>
+
+CURRENTLY WORKING ON:<br>
+Integration of work bench and Greg's filter - Eli<br>
+
+WORKING ON NEXT:<br>
+
