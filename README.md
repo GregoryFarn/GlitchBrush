@@ -55,6 +55,7 @@ Integrating Selection Box and Filter - Gregory
 :::APRIL 12:::
 
 FINISHED:
+Integration between selection box and pixel sort -Gregory
 
 CURRENTLY WORKING ON:
 

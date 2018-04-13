@@ -23,6 +23,7 @@ public class photo {
 	PixelReader pr;
 	WritableImage wi;
 	PixelWriter pw;
+
 	public photo(Group gr, Scene scene, String fileAdd) {
 		this.gr = gr;
 		this.sc = scene;
@@ -63,15 +64,19 @@ public class photo {
 		iv.setX(x);
 		iv.setY(y);
 	}
+
 	public PixelWriter getPW() {
 		return pw;
 	}
+
 	public PixelReader getPR() {
 		return pr;
 	}
+
 	public WritableImage getWI() {
 		return wi;
 	}
+
 	public double getX() {
 		return x;
 	}
@@ -79,10 +84,15 @@ public class photo {
 	public double getY() {
 		return y;
 	}
+
 	public double getHeight() {
 		return image.getHeight();
 	}
+
 	public double getWidth() {
 		return image.getWidth();
+	}
+	public void resetReader() {
+		pr = wi.getPixelReader();
 	}
 }
