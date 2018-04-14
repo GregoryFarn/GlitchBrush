@@ -7,26 +7,22 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class SignUpLogIn extends Application {
+public class SignUpLogIn extends Application{
 	
     public static void main(String[] args) {
         launch(args);
@@ -58,7 +54,7 @@ public class SignUpLogIn extends Application {
    	 	liUsername.setText("USERNAME");
 		liUsername.setMaxWidth(150);
 		liUsername.setId("liUsername");
-		TextField liPassword = new TextField();
+		PasswordField liPassword = new PasswordField();
 		liPassword.setTranslateY(-100);
 		liPassword.setTranslateX(-400);
 		liPassword.setText("PASSWORD");
@@ -69,8 +65,10 @@ public class SignUpLogIn extends Application {
 		liSubmit.setBorder(Border.EMPTY);
 		liSubmit.setTextFill(Color.BLACK);
 		liSubmit.setId("liSubmit");
-		Label lblMessage = new Label();
-		 
+		Label loginMsg = new Label();
+		loginMsg.setTranslateY(0);
+		loginMsg.setTranslateX(-425);
+
 		liSubmit.setOnAction(new EventHandler<ActionEvent>() {
    	 
 			@Override
@@ -113,24 +111,27 @@ public class SignUpLogIn extends Application {
 						userFound = true;
 						
 						//REDIRECT TO WORKBENCH PAGE
-						lblMessage.setText("Successful login");
-		    			lblMessage.setTextFill(Color.GREEN);
+						loginMsg.setText("Successful login");
+		    			loginMsg.setTextFill(Color.GREEN);
 						
 					}
 					
 					if(user.equals(username) && !pass.equals(password)) { //password incorrect
 						System.out.println("Password incorrect");
-						lblMessage.setText("Incorrect password");
-		    			lblMessage.setTextFill(Color.RED);
+
+						loginMsg.setText("Incorrect password");
+		    			loginMsg.setTextFill(Color.RED);
 		    			userIDtoSend = userID;
+		    			
+		    			
 					}
 					
 				}
 				
 				if(!userFound && userIDtoSend==0) { //user does not exist
 					System.out.println("User does not exist");
-					lblMessage.setText("User does not exist. Please try again");
-	    			lblMessage.setTextFill(Color.RED);
+					loginMsg.setText("User does not exist. Please try again");
+	    			loginMsg.setTextFill(Color.RED);
 				}
 				
 				userIDtoSend = 0;
@@ -160,7 +161,7 @@ public class SignUpLogIn extends Application {
    	 suEmail.setTranslateX(100);
    	 suEmail.setText("EMAIL");
    	 suEmail.setMaxWidth(150);
-   	 TextField suPassword= new TextField();
+   	 PasswordField suPassword= new PasswordField();
    	 suPassword.setTranslateY(-50);
    	 suPassword.setTranslateX(100);
    	 suPassword.setText("PASSWORD");
@@ -171,6 +172,9 @@ public class SignUpLogIn extends Application {
    	 suSubmit.setBorder(Border.EMPTY);
    	 suSubmit.setTextFill(Color.BLACK);
    	 suSubmit.setId("suSubmit");
+   	 Label signupMsg = new Label();
+   	 signupMsg.setTranslateY(50);
+   	 signupMsg.setTranslateX(75);
    	 
    	 suSubmit.setOnAction(new EventHandler<ActionEvent>() {
    	   	 @Override
@@ -206,14 +210,14 @@ public class SignUpLogIn extends Application {
 					String userEmail = rs.getString("email");
 					
 					if(user.equals(username)) { //same username
-						lblMessage.setText("Username already exists");
-		    			lblMessage.setTextFill(Color.RED);
+						signupMsg.setText("Username already exists");
+						signupMsg.setTextFill(Color.RED);
 						add = false;
 						
 					}
 					else if(email.equals(userEmail)) { //same email
-						lblMessage.setText("Email already exists");
-		    			lblMessage.setTextFill(Color.RED);
+						signupMsg.setText("Email already exists");
+						signupMsg.setTextFill(Color.RED);
 		    			add = false;
 					}
 					
@@ -229,8 +233,8 @@ public class SignUpLogIn extends Application {
 
 					ps.executeUpdate();
 
-					lblMessage.setText("Successfully added new user!");
-	    			lblMessage.setTextFill(Color.GREEN);
+					signupMsg.setText("Successfully added new user!");
+					signupMsg.setTextFill(Color.GREEN);
 					
 				}
 
@@ -251,13 +255,14 @@ public class SignUpLogIn extends Application {
 	   	 	root.getChildren().add(LogIn);
 	   	 	root.getChildren().add(liUsername);
 	   	 	root.getChildren().add(liPassword);
-	   	 	root.getChildren().add(liSubmit);
 	   	 	root.getChildren().add(SignUp);
 	   	 	root.getChildren().add(suUsername);
-	   	 	root.getChildren().add(suPassword);
-	   	 	root.getChildren().add(suSubmit);
 	   	 	root.getChildren().add(suEmail);
-	   	 	root.getChildren().add(lblMessage);
+	   	 	root.getChildren().add(suPassword);
+	   	 	root.getChildren().add(liSubmit);
+	   	 	root.getChildren().add(suSubmit);
+	   	 	root.getChildren().add(loginMsg);
+	   	 	root.getChildren().add(signupMsg);
 	    
 	   	 	Scene scene = new Scene(root, 1200, 800);
 	   	 	primaryStage.setScene(scene);

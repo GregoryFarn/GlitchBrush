@@ -78,3 +78,13 @@ Integration of work bench and Greg's filter - Eli<br>
 
 WORKING ON NEXT:<br>
 
+<b> APRIL 14 </b>
+<br>
+FINISHED: <br>
+Visual fixes on Login/Signup page - Emily <br>
+
+CURRENTLY WORKING ON: <br>
+Incorporating workbench.java with sql user files - Emily <br>
+
+WORKING ON NEXT: <br>
+
