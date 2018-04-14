@@ -155,6 +155,6 @@ public class selectionBox {
 		return bottomY;
 	}
 	public void pixelSort() {
-		pixelSort.pSort(this, p);
+		pixelSort.colorHeap(this, p);
 	}
 }

@@ -1,4 +1,7 @@
 package application;
+
+import java.util.Comparator;
+import java.util.PriorityQueue;
 import java.util.Vector;
 import javafx.scene.paint.Color;
 
@@ -31,5 +34,32 @@ public class pixelSort {
 			vc.set(min, vc.get(i));
 			vc.set(i, temp);
 		}
-}
+	}
+	public static Comparator<Color> cc = new Comparator<Color>(){
+		public int compare(Color c1, Color c2) {
+			if (c1.getBrightness() > c2.getBrightness()) {
+				return 1;
+			} else if (c1.getBrightness() < c2.getBrightness()) {
+				return -1;
+			} else {
+				return 0;
+			}
+		}
+	};  
+	
+	public static void colorHeap(selectionBox sb, photo p) {
+		PriorityQueue<Color> pq = new PriorityQueue<Color>(1,cc);
+		for (int i = (int) sb.getTopX(); i < (int) sb.getBottomX(); i++) {
+			Vector<Color> vc = new Vector<Color>();
+			for (int j = (int) sb.getTopY(); j < (int) sb.getBottomY(); j++) {
+				pq.add(p.getPR().getColor(i, j));
+			}
+			for (int j = (int) sb.getTopY(); j < (int) sb.getBottomY(); j++) {
+				p.getWI().getPixelWriter().setColor(i, j, pq.poll());
+			}
+		}
+		p.resetReader();
+	}
+	
+
 }
