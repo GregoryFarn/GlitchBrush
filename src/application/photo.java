@@ -24,15 +24,17 @@ public class photo {
 	WritableImage wi;
 	PixelWriter pw;
 
+	// WILL FIT TO SIZE OF THE SCENE PROVIDED (fileAdd is ADDRESS OF PICTURE)
 	public photo(Group gr, Scene scene, String fileAdd) {
 		this.gr = gr;
 		this.sc = scene;
 		try {
 			image = new Image(new FileInputStream(fileAdd));
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		// CODE TO CENTER AND FIT IMAGE TO SCENE SIZE
 		this.iv = new ImageView(image);
 		gr.getChildren().add(iv);
 		iv.setPreserveRatio(true);
@@ -47,12 +49,13 @@ public class photo {
 			iv.setX(x);
 			y = 0;
 		}
+		
+		//CREATE NEW IMAGE THAT FITS SIZE OF SCENE
 		try {
 			image = new Image(new FileInputStream(fileAdd), iv.getBoundsInLocal().getWidth(),
 					iv.getBoundsInLocal().getHeight(), false, false);
 
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		gr.getChildren().remove(iv);
@@ -92,6 +95,8 @@ public class photo {
 	public double getWidth() {
 		return image.getWidth();
 	}
+
+	//RESET READER TO GLITCH THE NEW PHOTO AFTER EDITS, OTHERWISE IT GLITCHES THE ORIGINAL PHOTO
 	public void resetReader() {
 		pr = wi.getPixelReader();
 	}

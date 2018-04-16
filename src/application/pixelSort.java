@@ -6,6 +6,8 @@ import java.util.Vector;
 import javafx.scene.paint.Color;
 
 public class pixelSort {
+
+	// SELECTION SORT the PIXELS
 	public static void pSort(selectionBox sb, photo p) {
 		for (int i = (int) sb.getTopX(); i < (int) sb.getBottomX(); i++) {
 			Vector<Color> vc = new Vector<Color>();
@@ -20,7 +22,7 @@ public class pixelSort {
 		p.resetReader();
 	}
 
-	// TODO IMPLEMENT MERGE SORT
+	// SELECTION SORT METHOD
 	public static void sortVC(Vector<Color> vc) {
 		int min;
 		for (int i = 0; i < vc.size(); i++) {
@@ -35,7 +37,9 @@ public class pixelSort {
 			vc.set(i, temp);
 		}
 	}
-	public static Comparator<Color> cc = new Comparator<Color>(){
+
+	// COMPARATOR FOR PRIORITY QUEUE
+	public static Comparator<Color> cc = new Comparator<Color>() {
 		public int compare(Color c1, Color c2) {
 			if (c1.getBrightness() > c2.getBrightness()) {
 				return 1;
@@ -45,12 +49,12 @@ public class pixelSort {
 				return 0;
 			}
 		}
-	};  
-	
+	};
+
+	// PRIORITY QUEUE SORT THE PIXELS
 	public static void colorHeap(selectionBox sb, photo p) {
-		PriorityQueue<Color> pq = new PriorityQueue<Color>(1,cc);
+		PriorityQueue<Color> pq = new PriorityQueue<Color>(1, cc);
 		for (int i = (int) sb.getTopX(); i < (int) sb.getBottomX(); i++) {
-			Vector<Color> vc = new Vector<Color>();
 			for (int j = (int) sb.getTopY(); j < (int) sb.getBottomY(); j++) {
 				pq.add(p.getPR().getColor(i, j));
 			}
@@ -60,6 +64,5 @@ public class pixelSort {
 		}
 		p.resetReader();
 	}
-	
 
 }
