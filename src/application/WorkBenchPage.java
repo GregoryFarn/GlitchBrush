@@ -28,6 +28,7 @@ public class WorkBenchPage extends Application {
         primaryStage.setTitle("New Project Page");
         Font font = Font.loadFont(getClass().getResourceAsStream("desdemon.ttf"), 20);
         
+        
         //nav bar rectangle
         Rectangle navbar = new Rectangle();
         navbar.setId("navbar");
@@ -41,37 +42,98 @@ public class WorkBenchPage extends Application {
 	   	welcome.setTranslateX(-555);
 	   	welcome.setTextFill(Color.WHITE);
 	   	
-	   	//filter button
-	   	Hyperlink filter = new Hyperlink(" filter ");
-        filter.setId("welcome");
-        filter.setTranslateY(-350);
-        filter.setTranslateX(-485);
-        filter.setBorder(Border.EMPTY);
-        filter.setTextFill(Color.WHITE);
-        
-        filter.setOnAction(new EventHandler<ActionEvent>() {
+	   	//linked list filter
+	   	Hyperlink scramble = new Hyperlink(" Scramble ");
+        scramble.setId("welcome");
+        scramble.setTranslateY(-350);
+        scramble.setTranslateX(-465);
+        scramble.setBorder(Border.EMPTY);
+        scramble.setTextFill(Color.WHITE);
+        scramble.setOnAction(new EventHandler<ActionEvent>() {
        	 
             @Override
             public void handle(ActionEvent event) {
             		//connect to filter class
-            		
+            		//selectionBox.linkedListSOrt();
             }
         });
         
         
-        //tool button
-       	Hyperlink tool = new Hyperlink(" tool ");
-        tool.setId("welcome");
-        tool.setTranslateY(-350);
-        tool.setTranslateX(-392);
-        tool.setBorder(Border.EMPTY);
-        tool.setTextFill(Color.WHITE);
+        //stack filter
+       	Hyperlink vertical = new Hyperlink(" Vertical ");
+        vertical.setId("welcome");
+        vertical.setTranslateY(-350);
+        vertical.setTranslateX(-330);
+        vertical.setBorder(Border.EMPTY);
+        vertical.setTextFill(Color.WHITE);
+        vertical.setOnAction(new EventHandler<ActionEvent>() {
+          	 
+            @Override
+            public void handle(ActionEvent event) {
+            		//connect to filter class
+            		//selectionBox.linkedListSOrt();
+            }
+        });
+        
+        //horizontal stack filter
+        Hyperlink horizontal = new Hyperlink(" Horizontal ");
+        horizontal.setId("welcome");
+        horizontal.setTranslateY(-350);
+        horizontal.setTranslateX(-180);
+        horizontal.setBorder(Border.EMPTY);
+        horizontal.setTextFill(Color.WHITE);
+        horizontal.setOnAction(new EventHandler<ActionEvent>() {
+          	 
+            @Override
+            public void handle(ActionEvent event) {
+            		//connect to filter class
+            		//selectionBox.linkedListSOrt();
+            }
+        });
+        
+        //smooth filter
+        Hyperlink smooth = new Hyperlink(" Smooth ");
+        smooth.setId("welcome");
+        smooth.setTranslateY(-350);
+        smooth.setTranslateX(-35);
+        smooth.setBorder(Border.EMPTY);
+        smooth.setTextFill(Color.WHITE);
+        smooth.setOnAction(new EventHandler<ActionEvent>() {
+          	 
+            @Override
+            public void handle(ActionEvent event) {
+            		//connect to filter class
+            		//selectionBox.linkedListSOrt();
+            }
+        });
+        
+        //rough filter
+        Hyperlink rough = new Hyperlink(" rough ");
+        rough.setId("welcome");
+        rough.setTranslateY(-350);
+        rough.setTranslateX(75);
+        rough.setBorder(Border.EMPTY);
+        rough.setTextFill(Color.WHITE);
+        rough.setOnAction(new EventHandler<ActionEvent>() {
+          	 
+            @Override
+            public void handle(ActionEvent event) {
+            		//connect to filter class
+            		//selectionBox.linkedListSOrt();
+            }
+        });
+        
+ 
+        
+        
+        
+        
         
         //login button
        	Hyperlink login = new Hyperlink(" login ");
         login.setId("welcome");
-        login.setTranslateY(-350);
-        login.setTranslateX(-300);
+        login.setTranslateY(-349);
+        login.setTranslateX(400);
         login.setBorder(Border.EMPTY);
         login.setTextFill(Color.WHITE);
         login.setOnAction(new EventHandler<ActionEvent>() {
@@ -123,8 +185,11 @@ public class WorkBenchPage extends Application {
         root.setId("pane");
         root.getChildren().add(navbar);
         root.getChildren().add(welcome);
-        root.getChildren().add(filter);
-        root.getChildren().add(tool);
+        root.getChildren().add(scramble);
+        root.getChildren().add(vertical);
+        root.getChildren().add(horizontal);
+        root.getChildren().add(smooth);
+        root.getChildren().add(rough);
         root.getChildren().add(login);
         root.getChildren().add(glitch);
         root.getChildren().add(workFrame);
