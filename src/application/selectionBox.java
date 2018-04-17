@@ -15,15 +15,18 @@ public class selectionBox {
 	private double startX;
 	private double startY;
 	private double endX;
-	private double endY; 
+	private double endY;
 	private double topY;
 	private double topX;
 	private double bottomX;
 	private double bottomY;
-
+	// filterType 0 = None, 1 = Selection Sort, 2 = HeapSort, 3 = Scramble, 4 =
+	// VertFlip, 5 = HorizFlip
+	private int filterType;
 	private Canvas cs;
 	private Rectangle rect;
 	private photo p;
+
 	public selectionBox(Group root, Scene scene, photo p) {
 		this.p = p;
 		cs = new Canvas(scene.getWidth(), scene.getHeight());
@@ -71,8 +74,8 @@ public class selectionBox {
 	public void updateSize(double x, double y) {
 		if (startX > x) {
 			if (startY > y) {
-				topX=x;
-				topY= y;
+				topX = x;
+				topY = y;
 				bottomX = startX;
 				bottomY = startY;
 				rect.setX(x + p.getX());
@@ -82,8 +85,8 @@ public class selectionBox {
 				endX = startX;
 				endY = startY;
 			} else {
-				topX=x;
-				topY= startY;
+				topX = x;
+				topY = startY;
 				bottomX = startX;
 				bottomY = y;
 				rect.setX(x + p.getX());
@@ -91,12 +94,12 @@ public class selectionBox {
 				rect.setHeight(y - startY);
 				endX = startX;
 				endY = y;
-				
+
 			}
 		} else {
 			if (startY > y) {
-				topX=startX;
-				topY= y;
+				topX = startX;
+				topY = y;
 				bottomX = x;
 				bottomY = startY;
 				rect.setY(y + p.getY());
@@ -105,8 +108,8 @@ public class selectionBox {
 				endY = startY;
 				endX = x;
 			} else {
-				topX=startX;
-				topY= startY;
+				topX = startX;
+				topY = startY;
 				bottomX = x;
 				bottomY = y;
 				rect.setX(startX + p.getX());
@@ -130,6 +133,7 @@ public class selectionBox {
 	public Canvas getCanvas() {
 		return cs;
 	}
+
 	public double getEndX() {
 		return endX;
 	}
@@ -138,23 +142,45 @@ public class selectionBox {
 
 		return endY;
 	}
+
 	public double getTopX() {
 
 		return topX;
 	}
+
 	public double getTopY() {
 
 		return topY;
 	}
+
 	public double getBottomX() {
 
 		return bottomX;
 	}
+
 	public double getBottomY() {
 
 		return bottomY;
 	}
+
+	// filterType 0 = None, 1 = Selection Sort, 2 = HeapSort, 3 = Scramble, 4 =
+		// VertFlip, 5 = HorizFlip
+	public void setType(int type) {
+		this.filterType = type;
+	}
+
 	public void pixelSort() {
-		pixelSort.colorFlipsSide(this, p);
+		if (filterType == 1) {
+			pixelSort.pSort(this, p);
+		} else if (filterType == 2) {
+			pixelSort.colorHeap(this, p);
+		} else if (filterType == 3) {
+			pixelSort.colorLinked(this, p);
+		} else if (filterType == 4) {
+			pixelSort.colorFlipsUp(this, p);
+		} else if (filterType == 5) {
+			pixelSort.colorFlipsSide  (this, p);
+		} else {
+		}
 	}
 }
