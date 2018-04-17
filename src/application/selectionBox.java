@@ -60,7 +60,39 @@ public class selectionBox {
 		cs.addEventHandler(MouseEvent.MOUSE_DRAGGED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent e) {
-				updateSize(e.getX(), e.getY());
+				double x = e.getX();
+				double y = e.getY();
+				double pw = p.getWidth();
+				double py = p.getY();
+				double ph = p.getHeight();
+				if (x < 0) {
+					if (y < 0) {
+						updateSize(0,0);
+					}
+					else if(y>ph) {
+						updateSize(0,ph);
+					}else {
+						updateSize(0,y);
+					}
+				}else if(x>pw) {
+					if (y < 0) {
+						updateSize(pw,0);
+					}
+					else if(y>ph) {
+						updateSize(pw,ph);
+					}else {
+						updateSize(pw,y);
+					}
+				}else {
+					if (y < 0) {
+						updateSize(x,0);
+					}
+					else if(y>ph) {
+						updateSize(x,ph);
+					}else {
+						updateSize(x,y);
+					}
+				}
 			}
 		});
 		cs.addEventHandler(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
