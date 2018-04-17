@@ -33,7 +33,7 @@ public class newProjectPage extends Application {
         
         //project title field 
         TextField nameField = new TextField();
-	   	 nameField.setTranslateY(-100);
+	   	 nameField.setTranslateY(-200);
 	   	 nameField.setText("Project Name");
 	   	 nameField.setMaxWidth(150);
 	   	 nameField.setId("nameField");
@@ -42,6 +42,7 @@ public class newProjectPage extends Application {
 	   	final FileChooser fileChooser = new FileChooser();
 	    
         final Hyperlink importButton = new Hyperlink("Import Photo");
+        importButton.setTranslateY(-100);
         importButton.setBorder(Border.EMPTY);
         importButton.setTextFill(Color.BLACK);
         importButton.setId("importButton");
@@ -53,8 +54,23 @@ public class newProjectPage extends Application {
             		File file = fileChooser.showOpenDialog(primaryStage);
                 if (file != null) {
                 		//do something with file here
+                		String dataForSQL = file.getName();
                     openFile(file);
                 }
+            }
+        });
+        
+        final Hyperlink joinButton = new Hyperlink("Join Project");
+        joinButton.setTranslateY(20);
+        joinButton.setBorder(Border.EMPTY);
+        joinButton.setTextFill(Color.BLACK);
+        joinButton.setId("importButton");
+ 
+        joinButton.setOnAction(new EventHandler<ActionEvent>() {
+        	 
+            @Override
+            public void handle(ActionEvent event) {
+            		
             }
         });
         
@@ -62,6 +78,7 @@ public class newProjectPage extends Application {
         StackPane root = new StackPane();
         root.getChildren().add(nameField);
         root.getChildren().add(importButton);
+        root.getChildren().add(joinButton);
         Scene scene = new Scene(root, 1200, 800);
         primaryStage.setScene(scene);
         java.net.URL url = this.getClass().getResource("NewProjectPage.css");
