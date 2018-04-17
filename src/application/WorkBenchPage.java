@@ -46,7 +46,7 @@ public class WorkBenchPage extends Application {
 	   	Hyperlink scramble = new Hyperlink(" Scramble ");
         scramble.setId("welcome");
         scramble.setTranslateY(-260);
-        scramble.setTranslateX(-412);
+        scramble.setTranslateX(-397);
         scramble.setBorder(Border.EMPTY);
         scramble.setTextFill(Color.WHITE);
         scramble.setOnAction(new EventHandler<ActionEvent>() {
@@ -63,7 +63,7 @@ public class WorkBenchPage extends Application {
        	Hyperlink vertical = new Hyperlink(" Vertical ");
         vertical.setId("welcome");
         vertical.setTranslateY(-260);
-        vertical.setTranslateX(-300);
+        vertical.setTranslateX(-270);
         vertical.setBorder(Border.EMPTY);
         vertical.setTextFill(Color.WHITE);
         vertical.setOnAction(new EventHandler<ActionEvent>() {
@@ -79,7 +79,7 @@ public class WorkBenchPage extends Application {
         Hyperlink horizontal = new Hyperlink(" Horizontal ");
         horizontal.setId("welcome");
         horizontal.setTranslateY(-260);
-        horizontal.setTranslateX(-180);
+        horizontal.setTranslateX(-135);
         horizontal.setBorder(Border.EMPTY);
         horizontal.setTextFill(Color.WHITE);
         horizontal.setOnAction(new EventHandler<ActionEvent>() {
@@ -95,7 +95,7 @@ public class WorkBenchPage extends Application {
         Hyperlink smooth = new Hyperlink(" Smooth ");
         smooth.setId("welcome");
         smooth.setTranslateY(-260);
-        smooth.setTranslateX(-60);
+        smooth.setTranslateX(-3);
         smooth.setBorder(Border.EMPTY);
         smooth.setTextFill(Color.WHITE);
         smooth.setOnAction(new EventHandler<ActionEvent>() {
@@ -111,7 +111,7 @@ public class WorkBenchPage extends Application {
         Hyperlink rough = new Hyperlink(" rough ");
         rough.setId("welcome");
         rough.setTranslateY(-260);
-        rough.setTranslateX(33);
+        rough.setTranslateX(103);
         rough.setBorder(Border.EMPTY);
         rough.setTextFill(Color.WHITE);
         rough.setOnAction(new EventHandler<ActionEvent>() {
@@ -123,12 +123,7 @@ public class WorkBenchPage extends Application {
             }
         });
         
- 
-        
-        
-        
-        
-        
+
         //login button
        	Hyperlink login = new Hyperlink(" login ");
         login.setId("welcome");
@@ -169,7 +164,7 @@ public class WorkBenchPage extends Application {
         workFrame.setTranslateY(25);
         
         //project image
-        final ImageView selectedImage = new ImageView();   
+        ImageView selectedImage = new ImageView();   
         Image image1 = null;
 		try {
 			image1 = new Image(new FileInputStream("test.jpg"));
@@ -178,6 +173,9 @@ public class WorkBenchPage extends Application {
 			e.printStackTrace();
 		}
         selectedImage.setImage(image1);
+        //selectedImage.setFitWidth(850);
+        //selectedImage.setFitHeight(450);
+        //selectedImage.setTranslateY(25);
 
         
         
@@ -195,8 +193,6 @@ public class WorkBenchPage extends Application {
         root.getChildren().add(workFrame);
         root.getChildren().add(selectedImage);
         Scene scene = new Scene(root, 1080, 600);
-        photo p = new photo(root, scene, "photoWide.jpg");
-		selectionBox sb = new selectionBox(root, scene, p);
         primaryStage.setScene(scene);
         java.net.URL url = this.getClass().getResource("WorkBenchPage.css");
         if (url == null) {
