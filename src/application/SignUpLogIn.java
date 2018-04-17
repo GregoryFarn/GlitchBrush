@@ -24,20 +24,36 @@ import javafx.stage.Stage;
 
 public class SignUpLogIn extends Application{
 	
+	public static int getUserID() {
+		return userIDtoSend;
+	}
+	public static String getUsername() {
+		return user;
+	}
+	public static String getPassword() {
+		return pass;
+	}
+	public static String getEmail() {
+		return email;
+	}
+	public static boolean loginCheck() {
+		return logged;
+	}
+	
     public static void main(String[] args) {
         launch(args);
     }
     
-	 int userIDtoSend = 0; //NETWORKING: SEND THIS INT
 	 //once the int is passed to the next .java file, get SQL data for their projects 
 	 //project name: GlitchUsers / table name: images
 	 //data column names: imageID, userID, imageName
 	 
-	 String user = "username";
-	 String pw = "pass";
-	 String checkUser, checkPw;
-	 private UserDataAccessor dataAccessor ;
-	 
+	 static int userIDtoSend = 0;
+	 static String user = "";
+	 static String pass = "";
+	 static String email = "";
+	 static boolean logged = false;
+
     public void start(Stage primaryStage) {
 	 
     	primaryStage.setTitle("SignUpLogIn Page");
@@ -92,8 +108,8 @@ public class SignUpLogIn extends Application{
 				ps = conn.prepareStatement(" SELECT s.username, s.lastname, s.userID");
 				rs = st.executeQuery("SELECT * FROM Users;");
 				
-				String user = liUsername.getText();
-				String pass = liPassword.getText();
+				user = liUsername.getText();
+				pass = liPassword.getText();
 				boolean userFound = false;
 				
 				while(rs.next()) { //as long as there are more rows
@@ -113,6 +129,11 @@ public class SignUpLogIn extends Application{
 						//REDIRECT TO WORKBENCH PAGE
 						loginMsg.setText("Successful login");
 		    			loginMsg.setTextFill(Color.GREEN);
+		    			
+		    			email = rs.getString("email");
+		    			logged = true;
+		    			UserPage u = new UserPage();
+		    			u.start(primaryStage);
 						
 					}
 					
@@ -200,9 +221,9 @@ public class SignUpLogIn extends Application{
    				ps = conn.prepareStatement(" SELECT s.username s.email");
 				rs = st.executeQuery("SELECT * FROM Users;");
 				
-				String user = suUsername.getText();
-				String pass = suPassword.getText();
-				String email = suEmail.getText();
+				user = suUsername.getText();
+				pass = suPassword.getText();
+				email = suEmail.getText();
 				boolean add = true;
    				
 				while(rs.next()) { //as long as there are more rows
@@ -228,13 +249,20 @@ public class SignUpLogIn extends Application{
   								+ suUsername.getText() + "','" + suPassword.getText() + "','" 
   								+ suEmail.getText() + "')");
 	
-					System.out.println("User added: '\t username: " + suUsername.getText() + "\t pass: " + suPassword.getText() 
+					System.out.println("User added: \t username: " + suUsername.getText() + "\t pass: " + suPassword.getText() 
 								+ "\t email: " + suEmail.getText());
 
 					ps.executeUpdate();
 
 					signupMsg.setText("Successfully added new user!");
 					signupMsg.setTextFill(Color.GREEN);
+					
+					String temp = rs.getString("userID");
+					userIDtoSend = Integer.parseInt(temp);
+					logged = true;
+					
+					UserPage u = new UserPage();
+	    			u.start(primaryStage);
 					
 				}
 
@@ -264,7 +292,7 @@ public class SignUpLogIn extends Application{
 	   	 	root.getChildren().add(loginMsg);
 	   	 	root.getChildren().add(signupMsg);
 	    
-	   	 	Scene scene = new Scene(root, 1200, 800);
+	   	 	Scene scene = new Scene(root, 1080, 600);
 	   	 	primaryStage.setScene(scene);
 	   	 	java.net.URL url = this.getClass().getResource("SignUpLogIn.css");
 	   	 	if (url == null) {
