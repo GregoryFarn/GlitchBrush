@@ -14,6 +14,14 @@
 	-fx-underline: false;
 }
 
+#previous .text{
+	-fx-text-fill: #000000;
+	-fx-font-size: 38px;
+   -fx-font-family: "Desdemona";
+   -fx-strikethrough: true;
+	-fx-underline: false;
+}
+
 #project .text{
 	-fx-font-size: 50px;
    -fx-font-family: "Desdemona";
@@ -23,7 +31,7 @@
 
 #welcome .text{
 	-fx-text-fill: #000000;
-	-fx-font-size: 50px;
+	-fx-font-size: 58px;
    -fx-font-family: "Desdemona";
    -fx-strikethrough: true;
 	-fx-underline: false;

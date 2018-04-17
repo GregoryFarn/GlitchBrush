@@ -2,6 +2,7 @@ package application;
 
 import java.sql.Statement;
 import java.sql.PreparedStatement;
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -133,7 +134,7 @@ public class SignUpLogIn extends Application{
 		    			email = rs.getString("email");
 		    			logged = true;
 		    			UserPage u = new UserPage();
-		    			u.start(primaryStage);
+			    			u.start(primaryStage);
 						
 					}
 					
@@ -162,6 +163,10 @@ public class SignUpLogIn extends Application{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} // provide driverName, dbURL, user, password...
+	   		 catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	   		 
 	        }
    	 });
@@ -273,6 +278,10 @@ public class SignUpLogIn extends Application{
    				// TODO Auto-generated catch block
    				System.out.println("error: " + e.getMessage());
    			} // provide driverName, dbURL, user, password...
+   	   		 catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
    	   		 
    	        }
    	   	 

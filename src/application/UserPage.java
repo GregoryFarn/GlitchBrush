@@ -3,6 +3,12 @@ package application;
 
 import javafx.stage.Stage;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,6 +16,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -20,6 +28,8 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.GridPane;
@@ -58,7 +68,7 @@ public class UserPage extends Application {
 			String imgName = rs.getString("imageName");
 			
 			if(usrID == userID) {
-				result.add(imgID + " " + imgName);
+				result.add(imgName);
 			}
 
 				
@@ -68,13 +78,18 @@ public class UserPage extends Application {
 		
 	}
 	
-	public void start(Stage primaryStage) throws ClassNotFoundException, SQLException {
+	public void start(Stage primaryStage) throws ClassNotFoundException, SQLException, FileNotFoundException{
 		
 		String username = "guest";
 		String password = "guest";
 		String email = "guest@email.com";
 		int userID = 0;
 		boolean loggedIn = SignUpLogIn.loginCheck();
+		
+		ArrayList<String> projects = new ArrayList<String>();
+		Label previous = null;
+		ImageView singleImg = new ImageView();
+		ImageView doubleImg = null;
 		
 		if(loggedIn) {
 			username = SignUpLogIn.getUsername();
@@ -84,15 +99,32 @@ public class UserPage extends Application {
 			password = SignUpLogIn.getPassword();
 			email = SignUpLogIn.getEmail();
 			userID = SignUpLogIn.getUserID();
+			
+			projects = getProjects(userID);
 		}
 		
-		ArrayList<String> projects = getProjects(userID);
-		
-		
-		for(int i=0; i<projects.size(); i++) {
-			System.out.println(projects.get(i));
+		if(projects.size()==0) {
+			previous = new Label("No Previous Projects");
+			previous.setId("previous");
+			previous.setTranslateY(-30);
 		}
-		
+		else if(projects.size()==1) { 
+			String x = new File(projects.get(0)).toString();
+			String imgURL = x.replace("\\", "\\\\");
+			System.out.println(imgURL);
+			Image img = new Image(new FileInputStream(imgURL));
+			singleImg.setImage(img);
+		//	singleImg = new ImageView(img);
+			singleImg.setId("singleImg");
+			singleImg.setPreserveRatio(true);
+			singleImg.setFitHeight(220);
+			singleImg.setTranslateY(-30);
+		}else {
+			//display only 2 images
+			Image img1 = new Image(new File(projects.get(0)).getAbsolutePath());
+			Image img2 = new Image(new File(projects.get(1)).getAbsolutePath());
+		}
+
 		
 		
         primaryStage.setTitle("User Page");
@@ -153,6 +185,16 @@ public class UserPage extends Application {
         root.getChildren().add(glitch);
         root.getChildren().add(welcome);
         root.getChildren().add(project);
+        
+        if(projects.size()==0)
+        root.getChildren().add(previous);
+        
+        if(projects.size()==1)
+        root.getChildren().add(singleImg);
+        
+        if(projects.size()>=2){
+        	root.getChildren().add(doubleImg);
+        }   
         //root.getChildren().add(scrollPane);
         Scene scene = new Scene(root, 1080, 600);
         primaryStage.setScene(scene);
