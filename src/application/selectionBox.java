@@ -1,10 +1,10 @@
 package application;
 
 import javafx.event.EventHandler;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -27,7 +27,7 @@ public class selectionBox {
 	private Rectangle rect;
 	private photo p;
 
-	public selectionBox(Group root, Scene scene, photo p) {
+	public selectionBox(StackPane root, Scene scene, photo p) {
 		this.p = p;
 		cs = new Canvas(scene.getWidth(), scene.getHeight());
 		rect = new Rectangle(0, 0, 0, 0);
@@ -164,7 +164,7 @@ public class selectionBox {
 	}
 
 	// filterType 0 = None, 1 = Selection Sort, 2 = HeapSort, 3 = Scramble, 4 =
-		// VertFlip, 5 = HorizFlip
+	// VertFlip, 5 = HorizFlip
 	public void setType(int type) {
 		this.filterType = type;
 	}
@@ -179,7 +179,9 @@ public class selectionBox {
 		} else if (filterType == 4) {
 			pixelSort.colorFlipsUp(this, p);
 		} else if (filterType == 5) {
-			pixelSort.colorFlipsSide  (this, p);
+			pixelSort.colorFlipsSide(this, p);
+		} else if (filterType == 6) {
+			pixelSort.colorHash(this, p);
 		} else {
 		}
 	}

@@ -71,7 +71,7 @@ public class pixelSort {
 		for (int i = (int) sb.getTopX(); i < (int) sb.getBottomX(); i++) {
 			colorHashTable cht = new colorHashTable((int) sb.getBottomY() - (int) sb.getTopY());
 			for (int j = (int) sb.getTopY(); j < (int) sb.getBottomY(); j++) {
-				cht.put(j * 800 + i * 300, p.getPR().getColor(i, j));
+				cht.put(j *13 , p.getPR().getColor(i, j));
 			}
 			for (int j = (int) sb.getTopY(); j < (int) sb.getBottomY(); j++) {
 				p.getWI().getPixelWriter().setColor(i, j, cht.get(j - (int) sb.getTopY()));

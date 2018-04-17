@@ -3,7 +3,6 @@ package application;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
@@ -11,9 +10,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
+import javafx.scene.layout.StackPane;
 
 public class photo {
-	Group gr;
+	StackPane gr;
 	Scene sc;
 	Canvas cs;
 	Image image;
@@ -25,7 +25,7 @@ public class photo {
 	PixelWriter pw;
 
 	// WILL FIT TO SIZE OF THE SCENE PROVIDED (fileAdd is ADDRESS OF PICTURE)
-	public photo(Group gr, Scene scene, String fileAdd) {
+	public photo(StackPane gr, Scene scene, String fileAdd) {
 		this.gr = gr;
 		this.sc = scene;
 		try {
@@ -38,14 +38,14 @@ public class photo {
 		this.iv = new ImageView(image);
 		gr.getChildren().add(iv);
 		iv.setPreserveRatio(true);
-		iv.setFitHeight(scene.getHeight());
+		iv.setFitHeight(gr.getHeight());
 		if (iv.getBoundsInLocal().getWidth() > scene.getWidth()) {
-			iv.setFitWidth(scene.getWidth());
-			y = (scene.getHeight() / 2) - (iv.getBoundsInLocal().getHeight() / 2);
+			iv.setFitWidth(gr.getWidth());
+			y = (gr.getHeight() / 2) - (iv.getBoundsInLocal().getHeight() / 2);
 			iv.setY(y);
 			x = 0;
 		} else {
-			x = (scene.getWidth() / 2) - (iv.getBoundsInLocal().getWidth() / 2);
+			x = (gr.getWidth() / 2) - (iv.getBoundsInLocal().getWidth() / 2);
 			iv.setX(x);
 			y = 0;
 		}

@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -19,7 +20,7 @@ import javafx.stage.Stage;
 public class GlitchBrush extends Application {
     @Override
 	public void start(Stage primaryStage) throws Exception {
-		Group root = new Group();
+		StackPane root = new StackPane();
 		Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
 		Scene scene = new Scene(root, screenBounds.getWidth(), screenBounds.getHeight());
 		primaryStage.setTitle("Glitch Brush");
@@ -27,6 +28,7 @@ public class GlitchBrush extends Application {
 		primaryStage.setFullScreen(true);
 		photo p = new photo(root, scene, "apple.jpg");
 		selectionBox sb = new selectionBox(root, scene, p);
+		sb.setType(6);
 		primaryStage.show();
 	}
 	/**
