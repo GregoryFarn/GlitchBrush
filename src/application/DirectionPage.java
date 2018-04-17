@@ -44,15 +44,14 @@ public class DirectionPage extends Application {
         importPhoto.setOnAction(new EventHandler<ActionEvent>() {
         	 @Override
              public void handle(ActionEvent event) {
-                 newProjectPage n = new newProjectPage();
-                 n.start(primaryStage);
+                 System.out.println("Link to Import page");
              }
         });
         
         StackPane root = new StackPane();
         root.getChildren().add(suli);
         root.getChildren().add(importPhoto);
-        Scene scene = new Scene(root, 1200, 800);
+        Scene scene = new Scene(root, 1080, 600);
         primaryStage.setScene(scene);
         java.net.URL url = this.getClass().getResource("DirectionPage.css");
         if (url == null) {

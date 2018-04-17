@@ -38,7 +38,7 @@ public class Main extends Application {
 	        StackPane root = new StackPane();
 	        root.setId("pane");
 	        root.getChildren().add(suli);
-	        Scene scene = new Scene(root, 1200, 800);
+	        Scene scene = new Scene(root, 1080, 600);
 	        scene.getStylesheets().addAll(this.getClass().getResource("LaunchPage.css").toExternalForm());
 	        primaryStage.setScene(scene);
 	        java.net.URL url = this.getClass().getResource("LaunchPage.css");
