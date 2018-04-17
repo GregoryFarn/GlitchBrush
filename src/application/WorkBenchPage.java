@@ -27,7 +27,10 @@ public class WorkBenchPage extends Application {
 	public void start(Stage primaryStage) {
         primaryStage.setTitle("New Project Page");
         Font font = Font.loadFont(getClass().getResourceAsStream("desdemon.ttf"), 20);
-        
+        StackPane root = new StackPane();
+        Scene scene = new Scene(root, 1080, 600);
+        photo p = new photo(root, scene, "apple.jpg");
+		selectionBox sb = new selectionBox(root, scene, p);
         
         //nav bar rectangle
         Rectangle navbar = new Rectangle();
@@ -54,7 +57,7 @@ public class WorkBenchPage extends Application {
             @Override
             public void handle(ActionEvent event) {
             		//connect to filter class
-            		//selectionBox.linkedListSOrt();
+            		sb.setType(3);
             }
         });
         
@@ -71,7 +74,8 @@ public class WorkBenchPage extends Application {
             @Override
             public void handle(ActionEvent event) {
             		//connect to filter class
-            		//selectionBox.linkedListSOrt();
+            	sb.setType(4);
+            	
             }
         });
         
@@ -87,7 +91,7 @@ public class WorkBenchPage extends Application {
             @Override
             public void handle(ActionEvent event) {
             		//connect to filter class
-            		//selectionBox.linkedListSOrt();
+            		sb.setType(5);
             }
         });
         
@@ -103,7 +107,7 @@ public class WorkBenchPage extends Application {
             @Override
             public void handle(ActionEvent event) {
             		//connect to filter class
-            		//selectionBox.linkedListSOrt();
+            	sb.setType(2);
             }
         });
         
@@ -119,7 +123,7 @@ public class WorkBenchPage extends Application {
             @Override
             public void handle(ActionEvent event) {
             		//connect to filter class
-            		//selectionBox.linkedListSOrt();
+            	sb.setType(1);
             }
         });
         
@@ -164,7 +168,7 @@ public class WorkBenchPage extends Application {
         workFrame.setTranslateY(25);
         
         //project image
-        ImageView selectedImage = new ImageView();   
+       /* ImageView selectedImage = new ImageView();   
         Image image1 = null;
 		try {
 			image1 = new Image(new FileInputStream("test.jpg"));
@@ -172,14 +176,13 @@ public class WorkBenchPage extends Application {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        selectedImage.setImage(image1);
+        selectedImage.setImage(image1);*/
         //selectedImage.setFitWidth(850);
         //selectedImage.setFitHeight(450);
         //selectedImage.setTranslateY(25);
 
         
         
-        StackPane root = new StackPane();
         root.setId("pane");
         root.getChildren().add(navbar);
         root.getChildren().add(welcome);
@@ -191,10 +194,9 @@ public class WorkBenchPage extends Application {
         root.getChildren().add(login);
         root.getChildren().add(glitch);
         root.getChildren().add(workFrame);
-        root.getChildren().add(selectedImage);
-        Scene scene = new Scene(root, 1080, 600);
-        photo p = new photo(root,scene,"apple.jpg");
-        selectionBox sb = new selectionBox(root,scene,p);
+        p.toFront();
+        sb.toFront();
+       // root.getChildren().add(selectedImage);
         primaryStage.setScene(scene);
         java.net.URL url = this.getClass().getResource("WorkBenchPage.css");
         if (url == null) {

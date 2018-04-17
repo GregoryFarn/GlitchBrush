@@ -218,4 +218,8 @@ public class selectionBox {
 		} else {
 		}
 	}
+	public void toFront() {
+		rect.toFront();
+		cs.toFront();
+	}
 }

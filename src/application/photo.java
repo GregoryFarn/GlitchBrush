@@ -105,7 +105,9 @@ public class photo {
 	public double getWidth() {
 		return image.getWidth();
 	}
-
+	public void toFront() {
+		iv.toFront();
+	}
 	// RESET READER TO GLITCH THE NEW PHOTO AFTER EDITS, OTHERWISE IT GLITCHES THE
 	// ORIGINAL PHOTO
 	public void resetReader() {
