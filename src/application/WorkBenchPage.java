@@ -29,7 +29,7 @@ public class WorkBenchPage extends Application {
         Font font = Font.loadFont(getClass().getResourceAsStream("desdemon.ttf"), 20);
         StackPane root = new StackPane();
         Scene scene = new Scene(root, 1080, 600);
-        photo p = new photo(root, scene, "apple.jpg");
+        photo p = new photo(root, scene, "rainbow1.png");
 		selectionBox sb = new selectionBox(root, scene, p);
         
         //nav bar rectangle
@@ -196,6 +196,7 @@ public class WorkBenchPage extends Application {
         root.getChildren().add(workFrame);
         p.toFront();
         sb.toFront();
+        sb.setType(6);
        // root.getChildren().add(selectedImage);
         primaryStage.setScene(scene);
         java.net.URL url = this.getClass().getResource("WorkBenchPage.css");

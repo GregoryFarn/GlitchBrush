@@ -17,7 +17,7 @@ public class colorHashTable {
 		}
 		else {
 			int x =i+1;
-			while(!vc[x%(size-1)].equals(Color.WHITE)) {
+			while(!vc[x%(size)].equals(Color.WHITE)) {
 				x++;
 			}
 			vc[x%(size)] = c;

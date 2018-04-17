@@ -215,7 +215,9 @@ public class selectionBox {
 			pixelSort.colorFlipsSide(this, p);
 		} else if (filterType == 6) {
 			pixelSort.colorHash(this, p);
-		} else {
+			pixelSort.colorHashSide(this, p);
+		}
+		else {
 		}
 	}
 	public void toFront() {

@@ -68,17 +68,34 @@ public class pixelSort {
 	}
 
 	public static void colorHash(selectionBox sb, photo p) {
+		Random rand = new Random();
 		for (int i = (int) sb.getTopX(); i < (int) sb.getBottomX(); i++) {
 			colorHashTable cht = new colorHashTable((int) sb.getBottomY() - (int) sb.getTopY());
 			for (int j = (int) sb.getTopY(); j < (int) sb.getBottomY(); j++) {
-				cht.put(j *13 , p.getPR().getColor(i, j));
+				cht.put(rand.nextInt((int) sb.getBottomY()-(int) sb.getTopY()), p.getPR().getColor(i, j));
 			}
 			for (int j = (int) sb.getTopY(); j < (int) sb.getBottomY(); j++) {
 				p.getWI().getPixelWriter().setColor(i, j, cht.get(j - (int) sb.getTopY()));
 			}
 
 		}
+		
+		p.resetReader();
 
+	}
+	public static void colorHashSide(selectionBox sb, photo p) {
+		Random rand = new Random();
+		for (int i = (int) sb.getTopY(); i < (int) sb.getBottomY(); i++) {
+			colorHashTable cht = new colorHashTable((int) sb.getBottomX() - (int) sb.getTopX());
+			for (int j = (int) sb.getTopX(); j < (int) sb.getBottomX(); j++) {
+				cht.put(rand.nextInt((int) sb.getBottomX()-(int) sb.getTopX()), p.getPR().getColor(j, i));
+			}
+			for (int j = (int) sb.getTopX(); j < (int) sb.getBottomX(); j++) {
+				p.getWI().getPixelWriter().setColor(j, i, cht.get(j - (int) sb.getTopX()));
+			}
+
+		}
+		
 		p.resetReader();
 
 	}
