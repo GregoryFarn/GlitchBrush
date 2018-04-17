@@ -32,21 +32,21 @@ public class WorkBenchPage extends Application {
         //nav bar rectangle
         Rectangle navbar = new Rectangle();
         navbar.setId("navbar");
-        navbar.setWidth(1150);
-        navbar.setHeight(50);
-        navbar.setTranslateY(-350);
+        navbar.setWidth(1020);
+        navbar.setHeight(40);
+        navbar.setTranslateY(-260);
         
         Label welcome = new Label("|||  ");
         welcome.setId("welcome");
-	   	welcome.setTranslateY(-350);
-	   	welcome.setTranslateX(-555);
+	   	welcome.setTranslateY(-260);
+	   	welcome.setTranslateX(-485);
 	   	welcome.setTextFill(Color.WHITE);
 	   	
 	   	//linked list filter
 	   	Hyperlink scramble = new Hyperlink(" Scramble ");
         scramble.setId("welcome");
-        scramble.setTranslateY(-350);
-        scramble.setTranslateX(-465);
+        scramble.setTranslateY(-260);
+        scramble.setTranslateX(-412);
         scramble.setBorder(Border.EMPTY);
         scramble.setTextFill(Color.WHITE);
         scramble.setOnAction(new EventHandler<ActionEvent>() {
@@ -62,8 +62,8 @@ public class WorkBenchPage extends Application {
         //stack filter
        	Hyperlink vertical = new Hyperlink(" Vertical ");
         vertical.setId("welcome");
-        vertical.setTranslateY(-350);
-        vertical.setTranslateX(-330);
+        vertical.setTranslateY(-260);
+        vertical.setTranslateX(-300);
         vertical.setBorder(Border.EMPTY);
         vertical.setTextFill(Color.WHITE);
         vertical.setOnAction(new EventHandler<ActionEvent>() {
@@ -78,7 +78,7 @@ public class WorkBenchPage extends Application {
         //horizontal stack filter
         Hyperlink horizontal = new Hyperlink(" Horizontal ");
         horizontal.setId("welcome");
-        horizontal.setTranslateY(-350);
+        horizontal.setTranslateY(-260);
         horizontal.setTranslateX(-180);
         horizontal.setBorder(Border.EMPTY);
         horizontal.setTextFill(Color.WHITE);
@@ -94,8 +94,8 @@ public class WorkBenchPage extends Application {
         //smooth filter
         Hyperlink smooth = new Hyperlink(" Smooth ");
         smooth.setId("welcome");
-        smooth.setTranslateY(-350);
-        smooth.setTranslateX(-35);
+        smooth.setTranslateY(-260);
+        smooth.setTranslateX(-60);
         smooth.setBorder(Border.EMPTY);
         smooth.setTextFill(Color.WHITE);
         smooth.setOnAction(new EventHandler<ActionEvent>() {
@@ -110,8 +110,8 @@ public class WorkBenchPage extends Application {
         //rough filter
         Hyperlink rough = new Hyperlink(" rough ");
         rough.setId("welcome");
-        rough.setTranslateY(-350);
-        rough.setTranslateX(75);
+        rough.setTranslateY(-260);
+        rough.setTranslateX(33);
         rough.setBorder(Border.EMPTY);
         rough.setTextFill(Color.WHITE);
         rough.setOnAction(new EventHandler<ActionEvent>() {
@@ -132,8 +132,8 @@ public class WorkBenchPage extends Application {
         //login button
        	Hyperlink login = new Hyperlink(" login ");
         login.setId("welcome");
-        login.setTranslateY(-349);
-        login.setTranslateX(400);
+        login.setTranslateY(-260);
+        login.setTranslateX(350);
         login.setBorder(Border.EMPTY);
         login.setTextFill(Color.WHITE);
         login.setOnAction(new EventHandler<ActionEvent>() {
@@ -148,8 +148,8 @@ public class WorkBenchPage extends Application {
         //logo button
        	Hyperlink glitch = new Hyperlink("glitch");
         glitch.setId("logo");
-        glitch.setTranslateY(-350);
-        glitch.setTranslateX(500);
+        glitch.setTranslateY(-260);
+        glitch.setTranslateX(450);
         glitch.setBorder(Border.EMPTY);
         glitch.setTextFill(Color.WHITE);
         glitch.setOnAction(new EventHandler<ActionEvent>() {
@@ -164,8 +164,8 @@ public class WorkBenchPage extends Application {
         //work frame
         Rectangle workFrame = new Rectangle();
         workFrame.setId("navbar");
-        workFrame.setWidth(1050);
-        workFrame.setHeight(650);
+        workFrame.setWidth(900);
+        workFrame.setHeight(500);
         workFrame.setTranslateY(25);
         
         //project image
@@ -194,7 +194,7 @@ public class WorkBenchPage extends Application {
         root.getChildren().add(glitch);
         root.getChildren().add(workFrame);
         root.getChildren().add(selectedImage);
-        Scene scene = new Scene(root, 1200, 800);
+        Scene scene = new Scene(root, 1080, 600);
         primaryStage.setScene(scene);
         java.net.URL url = this.getClass().getResource("WorkBenchPage.css");
         if (url == null) {
