@@ -195,6 +195,8 @@ public class WorkBenchPage extends Application {
         root.getChildren().add(workFrame);
         root.getChildren().add(selectedImage);
         Scene scene = new Scene(root, 1080, 600);
+        photo p = new photo(root, scene, "photoWide.jpg");
+		selectionBox sb = new selectionBox(root, scene, p);
         primaryStage.setScene(scene);
         java.net.URL url = this.getClass().getResource("WorkBenchPage.css");
         if (url == null) {
