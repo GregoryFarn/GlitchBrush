@@ -26,7 +26,7 @@ public class GlitchBrush extends Application {
 		primaryStage.setTitle("Glitch Brush");
 		primaryStage.setScene(scene);
 		primaryStage.setFullScreen(true);
-		photo p = new photo(root, scene, "apple.jpg");
+		photo p = new photo(root, scene, "photoWide.jpg");
 		selectionBox sb = new selectionBox(root, scene, p);
 		sb.setType(6);
 		primaryStage.show();

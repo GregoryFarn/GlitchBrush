@@ -23,6 +23,10 @@ public class photo {
 	PixelReader pr;
 	WritableImage wi;
 	PixelWriter pw;
+	int width;
+	int height;
+	int dispX;
+	int dispY;
 
 	// WILL FIT TO SIZE OF THE SCENE PROVIDED (fileAdd is ADDRESS OF PICTURE)
 	public photo(StackPane gr, Scene scene, String fileAdd) {
@@ -33,24 +37,29 @@ public class photo {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-
+		
+		
+		width = 900;
+		height = 500;
+		dispX = 0;
+		dispY = 25;
+		
+		
 		// CODE TO CENTER AND FIT IMAGE TO SCENE SIZE
 		this.iv = new ImageView(image);
 		gr.getChildren().add(iv);
 		iv.setPreserveRatio(true);
-		iv.setFitHeight(gr.getHeight());
-		if (iv.getBoundsInLocal().getWidth() > scene.getWidth()) {
-			iv.setFitWidth(gr.getWidth());
-			y = (gr.getHeight() / 2) - (iv.getBoundsInLocal().getHeight() / 2);
-			iv.setY(y);
-			x = 0;
+		iv.setFitHeight(height);
+		if (iv.getBoundsInLocal().getWidth() > width) {
+			iv.setFitWidth(width);
+			y = (scene.getHeight() / 2) - ((iv.getBoundsInLocal().getHeight()/2) -dispY);
+			x = (scene.getWidth() / 2) - (iv.getBoundsInLocal().getWidth() / 2)+dispX;
 		} else {
-			x = (gr.getWidth() / 2) - (iv.getBoundsInLocal().getWidth() / 2);
-			iv.setX(x);
-			y = 0;
+			x = (scene.getWidth() / 2) - (iv.getBoundsInLocal().getWidth() / 2)+dispX;
+			y =(scene.getHeight() / 2) - ((height/2) -dispY);
 		}
-		
-		//CREATE NEW IMAGE THAT FITS SIZE OF SCENE
+
+		// CREATE NEW IMAGE THAT FITS SIZE OF SCENE
 		try {
 			image = new Image(new FileInputStream(fileAdd), iv.getBoundsInLocal().getWidth(),
 					iv.getBoundsInLocal().getHeight(), false, false);
@@ -64,8 +73,9 @@ public class photo {
 		pw = wi.getPixelWriter();
 		this.iv = new ImageView(wi);
 		gr.getChildren().add(iv);
-		iv.setX(x);
-		iv.setY(y);
+		iv.setManaged(false);
+		iv.setLayoutX(x);
+		iv.setLayoutY(y);
 	}
 
 	public PixelWriter getPW() {
@@ -96,7 +106,8 @@ public class photo {
 		return image.getWidth();
 	}
 
-	//RESET READER TO GLITCH THE NEW PHOTO AFTER EDITS, OTHERWISE IT GLITCHES THE ORIGINAL PHOTO
+	// RESET READER TO GLITCH THE NEW PHOTO AFTER EDITS, OTHERWISE IT GLITCHES THE
+	// ORIGINAL PHOTO
 	public void resetReader() {
 		pr = wi.getPixelReader();
 	}

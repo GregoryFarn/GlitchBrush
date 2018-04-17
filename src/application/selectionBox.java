@@ -29,16 +29,17 @@ public class selectionBox {
 
 	public selectionBox(StackPane root, Scene scene, photo p) {
 		this.p = p;
-		cs = new Canvas(scene.getWidth(), scene.getHeight());
+		filterType = 0;
 		rect = new Rectangle(0, 0, 0, 0);
 		rect.setFill(Color.TRANSPARENT);
 		rect.setStroke(Color.TRANSPARENT);
 		rect.setStrokeWidth(1);
 		rect.getStrokeDashArray().addAll(2d);
 		cs = new Canvas(p.getWidth(), p.getHeight());
+		cs.setManaged(false);
 		cs.setLayoutX(p.getX());
 		cs.setLayoutY(p.getY());
-
+		rect.setManaged(false);
 		root.getChildren().add(rect);
 		root.getChildren().add(cs);
 		endX = -1;
@@ -49,8 +50,8 @@ public class selectionBox {
 
 				startX = e.getX();
 				startY = e.getY();
-				rect.setX(startX + p.getX());
-				rect.setY(startY + p.getY());
+				rect.setLayoutX(startX + p.getX());
+				rect.setLayoutY(startY + p.getY());
 				rect.setHeight(0);
 				rect.setWidth(0);
 				rect.setStroke(Color.GREY);
@@ -78,8 +79,8 @@ public class selectionBox {
 				topY = y;
 				bottomX = startX;
 				bottomY = startY;
-				rect.setX(x + p.getX());
-				rect.setY(y + p.getY());
+				rect.setLayoutX(x + p.getX());
+				rect.setLayoutY(y + p.getY());
 				rect.setWidth(startX - x);
 				rect.setHeight(startY - y);
 				endX = startX;
@@ -89,7 +90,7 @@ public class selectionBox {
 				topY = startY;
 				bottomX = startX;
 				bottomY = y;
-				rect.setX(x + p.getX());
+				rect.setLayoutX(x + p.getX());
 				rect.setWidth(startX - x);
 				rect.setHeight(y - startY);
 				endX = startX;
@@ -102,7 +103,7 @@ public class selectionBox {
 				topY = y;
 				bottomX = x;
 				bottomY = startY;
-				rect.setY(y + p.getY());
+				rect.setLayoutY(y + p.getY());
 				rect.setWidth(x - startX);
 				rect.setHeight(startY - y);
 				endY = startY;
@@ -112,8 +113,8 @@ public class selectionBox {
 				topY = startY;
 				bottomX = x;
 				bottomY = y;
-				rect.setX(startX + p.getX());
-				rect.setY(startY + p.getY());
+				rect.setLayoutX(startX + p.getX());
+				rect.setLayoutY(startY + p.getY());
 				rect.setHeight(y - startY);
 				rect.setWidth(x - startX);
 				endX = x;
