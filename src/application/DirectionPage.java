@@ -44,7 +44,8 @@ public class DirectionPage extends Application {
         importPhoto.setOnAction(new EventHandler<ActionEvent>() {
         	 @Override
              public void handle(ActionEvent event) {
-                 System.out.println("Link to Import page");
+                 newProjectPage n = new newProjectPage();
+                 n.start(primaryStage);
              }
         });
         
