@@ -40,6 +40,16 @@ import javafx.scene.text.Font;
 
 public class UserPage extends Application {
 	
+	static String sendProject = "";
+	static String sendProject2 = "";
+
+	public static String getProjectName(){
+		return sendProject;
+	}
+	public static String getProjectName2() {
+		return sendProject2;
+	}
+
 	public static void main(String[] args) {
         launch(args);
     }
@@ -89,7 +99,16 @@ public class UserPage extends Application {
 		ArrayList<String> projects = new ArrayList<String>();
 		Label previous = null;
 		ImageView singleImg = new ImageView();
-		ImageView doubleImg = null;
+		ImageView doubleImg = new ImageView();
+		String imgURL = "";
+		
+		Hyperlink singleEdit = new Hyperlink("Edit");
+		Hyperlink doubleEdit = new Hyperlink("Edit");
+		
+		singleEdit.setTranslateY(125);
+		doubleEdit.setTranslateY(125);
+		singleEdit.setId("edit");
+		doubleEdit.setId("edit");
 		
 		if(loggedIn) {
 			username = SignUpLogIn.getUsername();
@@ -101,6 +120,7 @@ public class UserPage extends Application {
 			userID = SignUpLogIn.getUserID();
 			
 			projects = getProjects(userID);
+
 		}
 		
 		if(projects.size()==0) {
@@ -110,7 +130,7 @@ public class UserPage extends Application {
 		}
 		else if(projects.size()==1) { 
 			String x = new File(projects.get(0)).toString();
-			String imgURL = x.replace("\\", "\\\\");
+			imgURL = x.replace("\\", "\\\\");
 			System.out.println(imgURL);
 			Image img = new Image(new FileInputStream(imgURL));
 			singleImg.setImage(img);
@@ -118,14 +138,69 @@ public class UserPage extends Application {
 			singleImg.setId("singleImg");
 			singleImg.setPreserveRatio(true);
 			singleImg.setFitHeight(220);
-			singleImg.setTranslateY(-30);
+			
+			previous = new Label("Previous Projects");
+			previous.setId("previous");
+			previous.setTranslateY(-150);	
+			
+			sendProject = imgURL; //sends complete URL
+			
 		}else {
 			//display only 2 images
-			Image img1 = new Image(new File(projects.get(0)).getAbsolutePath());
-			Image img2 = new Image(new File(projects.get(1)).getAbsolutePath());
-		}
-
+			String x = new File(projects.get(0)).toString();
+			imgURL = x.replace("\\", "\\\\");
+			System.out.println(imgURL);
+			Image img = new Image(new FileInputStream(imgURL));
+			singleImg.setImage(img);
 		
+			singleImg.setId("singleImg");
+			singleImg.setPreserveRatio(true);
+			singleImg.setFitHeight(220);
+			singleImg.setTranslateX(-180);
+			singleEdit.setTranslateX(-180);
+			
+			String y = new File(projects.get(1)).toString();
+			String imgURL2 = y.replace("\\", "\\\\");
+			System.out.println(imgURL2);
+			Image img2 = new Image(new FileInputStream(imgURL2));
+			doubleImg.setImage(img2);
+		
+			doubleImg.setId("doubleImg");
+			doubleImg.setPreserveRatio(true);
+			doubleImg.setFitHeight(220);
+			doubleImg.setTranslateX(180);
+			doubleEdit.setTranslateX(180);
+			
+			previous = new Label("Previous Projects");
+			previous.setId("previous");
+			previous.setTranslateY(-150);
+			
+			sendProject = imgURL;
+			sendProject2 = imgURL2;
+			
+		}
+		
+		singleEdit.setOnAction(new EventHandler<ActionEvent>() {
+			 
+            @Override
+            public void handle(ActionEvent event) {
+            	String x = getProjectName();
+                WorkBenchPage w = new WorkBenchPage();
+                WorkBenchPage.setProject(x);
+                w.start(primaryStage);
+            }
+        });
+		
+		doubleEdit.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+            	String x = getProjectName2();
+                WorkBenchPage w = new WorkBenchPage();
+                WorkBenchPage.setProject(x);
+                w.start(primaryStage);
+            }
+        });
+
 		
         primaryStage.setTitle("User Page");
         Font font = Font.loadFont(getClass().getResourceAsStream("desdemon.ttf"), 60);
@@ -185,15 +260,20 @@ public class UserPage extends Application {
         root.getChildren().add(glitch);
         root.getChildren().add(welcome);
         root.getChildren().add(project);
-        
-        if(projects.size()==0)
-        root.getChildren().add(previous);
-        
-        if(projects.size()==1)
-        root.getChildren().add(singleImg);
-        
+    	root.getChildren().add(previous); //either yrevious or nrevious
+    	
+        if(projects.size()==1) {
+        	root.getChildren().add(singleImg);
+        	root.getChildren().add(singleEdit);
+        }
+        	
+
         if(projects.size()>=2){
+        	root.getChildren().add(singleImg);
         	root.getChildren().add(doubleImg);
+        	root.getChildren().add(singleEdit);
+        	root.getChildren().add(doubleEdit);
+
         }   
         //root.getChildren().add(scrollPane);
         Scene scene = new Scene(root, 1080, 600);

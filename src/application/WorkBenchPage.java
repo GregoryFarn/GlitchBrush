@@ -21,6 +21,11 @@ import javafx.stage.Stage;
 
 public class WorkBenchPage extends Application {
 	
+	static String url;
+	public static void setProject(String x) {
+		url = x;
+	}
+	
 	public static void main(String[] args) {
         launch(args);
     }
@@ -29,7 +34,7 @@ public class WorkBenchPage extends Application {
         Font font = Font.loadFont(getClass().getResourceAsStream("desdemon.ttf"), 20);
         StackPane root = new StackPane();
         Scene scene = new Scene(root, 1080, 600);
-        photo p = new photo(root, scene, "rainbow1.png");
+        photo p = new photo(root, scene, url);
 		selectionBox sb = new selectionBox(root, scene, p);
         
         //nav bar rectangle
@@ -160,6 +165,20 @@ public class WorkBenchPage extends Application {
             }
         });
         
+        Hyperlink save = new Hyperlink(" save ");
+        save.setId("welcome");
+        save.setTranslateY(-260);
+        save.setTranslateX(310);
+        save.setBorder(Border.EMPTY);
+        save.setTextFill(Color.WHITE);
+        save.setOnAction(new EventHandler<ActionEvent>() {
+       	 
+            @Override
+            public void handle(ActionEvent event) {
+                //should pop up whether the user wants to save or not
+            }
+        });
+        
         //logo button
        	Hyperlink glitch = new Hyperlink("glitch");
         glitch.setId("logo");
@@ -208,7 +227,13 @@ public class WorkBenchPage extends Application {
         root.getChildren().add(smooth);
         root.getChildren().add(rough);
         root.getChildren().add(random);
-        root.getChildren().add(login);
+        
+        if(!SignUpLogIn.loginCheck()) {
+        	root.getChildren().add(login);
+        }
+        else {
+        	root.getChildren().add(save);
+        }
         root.getChildren().add(glitch);
         root.getChildren().add(workFrame);
         p.toFront();

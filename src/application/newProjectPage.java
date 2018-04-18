@@ -79,7 +79,7 @@ public class newProjectPage extends Application {
         root.getChildren().add(nameField);
         root.getChildren().add(importButton);
         root.getChildren().add(joinButton);
-        Scene scene = new Scene(root, 1200, 800);
+        Scene scene = new Scene(root, 1080, 600);
         primaryStage.setScene(scene);
         java.net.URL url = this.getClass().getResource("NewProjectPage.css");
         if (url == null) {
