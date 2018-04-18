@@ -1,6 +1,8 @@
 package application;
 
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -8,6 +10,8 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -25,7 +29,7 @@ public class WorkBenchPage extends Application {
         Font font = Font.loadFont(getClass().getResourceAsStream("desdemon.ttf"), 20);
         StackPane root = new StackPane();
         Scene scene = new Scene(root, 1080, 600);
-        photo p = new photo(root, scene, "apple.jpg");
+        photo p = new photo(root, scene, "rainbow1.png");
 		selectionBox sb = new selectionBox(root, scene, p);
         
         //nav bar rectangle
@@ -123,12 +127,28 @@ public class WorkBenchPage extends Application {
             }
         });
         
+      //random filter
+        Hyperlink random = new Hyperlink(" random ");
+        random.setId("welcome");
+        random.setTranslateY(-260);
+        random.setTranslateX(210);
+        random.setBorder(Border.EMPTY);
+        random.setTextFill(Color.WHITE);
+        random.setOnAction(new EventHandler<ActionEvent>() {
+          	 
+            @Override
+            public void handle(ActionEvent event) {
+            		//connect to filter class
+            	sb.setType(6);
+            }
+        });
+        
 
         //login button
        	Hyperlink login = new Hyperlink(" login ");
         login.setId("welcome");
         login.setTranslateY(-260);
-        login.setTranslateX(350);
+        login.setTranslateX(310);
         login.setBorder(Border.EMPTY);
         login.setTextFill(Color.WHITE);
         login.setOnAction(new EventHandler<ActionEvent>() {
@@ -187,6 +207,7 @@ public class WorkBenchPage extends Application {
         root.getChildren().add(horizontal);
         root.getChildren().add(smooth);
         root.getChildren().add(rough);
+        root.getChildren().add(random);
         root.getChildren().add(login);
         root.getChildren().add(glitch);
         root.getChildren().add(workFrame);
