@@ -54,7 +54,7 @@ public class UserPage extends Application {
         launch(args);
     }
 	
-	public ArrayList<String> getProjects(int userID) throws SQLException, ClassNotFoundException {
+	public static ArrayList<String> getProjects(int userID) throws SQLException, ClassNotFoundException {
 		
 		ArrayList<String> result = new ArrayList<String>();
 		String driverClassName = "com.mysql.jdbc.Driver";

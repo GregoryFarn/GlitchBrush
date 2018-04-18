@@ -138,7 +138,7 @@ public class SignUpLogIn extends Application{
 						
 					}
 					
-					if(user.equals(username) && !pass.equals(password)) { //password incorrect
+					if((user.equals(username) && !pass.equals(password))) { //password incorrect
 						System.out.println("Password incorrect");
 
 						loginMsg.setText("Incorrect password");
@@ -150,14 +150,11 @@ public class SignUpLogIn extends Application{
 					
 				}
 				
-				if(!userFound && userIDtoSend==0) { //user does not exist
-					System.out.println("User does not exist");
-					loginMsg.setText("User does not exist. Please try again");
-	    			loginMsg.setTextFill(Color.RED);
+				if(!userFound && userIDtoSend==0) {
+					System.out.println("No user found");
+					loginMsg.setText("User not found");
+					loginMsg.setTextFill(Color.RED);
 				}
-				
-				userIDtoSend = 0;
-				
 				
 			} catch (ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block

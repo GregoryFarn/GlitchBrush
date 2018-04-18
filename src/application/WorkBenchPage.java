@@ -3,6 +3,13 @@ package application;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -176,6 +183,48 @@ public class WorkBenchPage extends Application {
             @Override
             public void handle(ActionEvent event) {
                 //should pop up whether the user wants to save or not
+            	//only save when logged in
+            	try {
+            		
+            		int user = SignUpLogIn.getUserID();
+					ArrayList<String> projects = UserPage.getProjects(user);
+					boolean createNew = true;
+					
+					String projectName = newProjectPage.getProjectName();
+					
+					for(int i=0; i<projects.size(); i++) {
+						if(projects.get(i).equals(url)) {
+							//a url already exists for this project
+							createNew = false;
+						}
+					}
+					
+					if(createNew) {
+						
+						String driverClassName = "com.mysql.jdbc.Driver";
+			   	   		String dbURL = "jdbc:mysql://localhost/GlitchUsers?user=root&password=root&useSSL=false";
+			   	   		 
+						Connection conn = null; //create the connection to database
+		   				Statement st = null; //executes any sql command
+		   				PreparedStatement ps = null;
+		   				ResultSet rs = null; //retrieve data that comes back (from select statement), a table	
+		   				
+		   				Class.forName(driverClassName);
+		   				conn = DriverManager.getConnection(dbURL);
+		   				st = conn.createStatement();
+		   				
+						ps = conn.prepareStatement("INSERT INTO Images (userID,imageName,projectName) VALUES('" 
+  								+ user + "','" + url + "','" + projectName + "')");
+						
+						ps.executeUpdate();
+					}
+					
+				} catch (ClassNotFoundException | SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            	
+            	
             }
         });
         

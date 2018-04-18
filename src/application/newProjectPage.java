@@ -24,6 +24,13 @@ import javafx.stage.Stage;
 
 public class newProjectPage extends Application {
 	private Desktop desktop = Desktop.getDesktop();
+	
+	static String proj;
+	
+	public static String getProjectName() {
+		return proj;
+	}
+	
 	public static void main(String[] args) {
         launch(args);
     }
@@ -37,6 +44,8 @@ public class newProjectPage extends Application {
 	   	 nameField.setText("Project Name");
 	   	 nameField.setMaxWidth(150);
 	   	 nameField.setId("nameField");
+	   	 
+	   	
         
 	   	 //file chooser
 	   	final FileChooser fileChooser = new FileChooser();
@@ -53,9 +62,18 @@ public class newProjectPage extends Application {
             public void handle(ActionEvent event) {
             		File file = fileChooser.showOpenDialog(primaryStage);
                 if (file != null) {
+                	 proj = nameField.getText();
                 		//do something with file here
-                		String dataForSQL = file.getName();
-                    openFile(file);
+                		String dataForSQL = file.getAbsolutePath();
+                		System.out.println(dataForSQL);
+                //		openFile(dataForSQL);
+
+                		String s = dataForSQL.replace("\\", "\\\\");
+                		
+                		WorkBenchPage w = new WorkBenchPage();
+                		WorkBenchPage.setProject(s);
+                		w.start(primaryStage);
+                		
                 }
             }
         });
@@ -91,15 +109,17 @@ public class newProjectPage extends Application {
         primaryStage.show();
 	}
 	
-	private void openFile(File file) {
-        try {
+	private void openFile(String file) {
+		
+		
+        /*try {
             desktop.open(file);
         } catch (IOException ex) {
             Logger.getLogger(
                 newProjectPage.class.getName()).log(
                     Level.SEVERE, null, ex
                 );
-        }
+        }*/
     }
 }
 
