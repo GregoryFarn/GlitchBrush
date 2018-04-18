@@ -1,6 +1,7 @@
 package application;
 
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.Connection;
@@ -22,15 +23,18 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class WorkBenchPage extends Application {
-	
+	static boolean accCheck = false;
 	static String url;
 	public static void setProject(String x) {
 		url = x;
@@ -46,7 +50,7 @@ public class WorkBenchPage extends Application {
         Scene scene = new Scene(root, 1080, 600);
         photo p = new photo(root, scene, url);
 		selectionBox sb = new selectionBox(root, scene, p);
-        
+		
         //nav bar rectangle
         Rectangle navbar = new Rectangle();
         navbar.setId("navbar");
@@ -75,6 +79,17 @@ public class WorkBenchPage extends Application {
             		sb.setType(3);
             }
         });
+        scramble.setOnMouseEntered(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				if (accCheck) {
+				Media sound = new Media(new File("scramble.mp3").toURI().toString());
+				MediaPlayer mp = new MediaPlayer(sound);
+				mp.play();}
+			}
+        });
         
         
         //stack filter
@@ -93,6 +108,17 @@ public class WorkBenchPage extends Application {
             	
             }
         });
+        vertical.setOnMouseEntered(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				if (accCheck) {
+				Media sound = new Media(new File("vertical.mp3").toURI().toString());
+				MediaPlayer mp = new MediaPlayer(sound);
+				mp.play();}
+			}
+        });
         
         //horizontal stack filter
         Hyperlink horizontal = new Hyperlink(" Horizontal ");
@@ -108,6 +134,17 @@ public class WorkBenchPage extends Application {
             		//connect to filter class
             		sb.setType(5);
             }
+        });
+        horizontal.setOnMouseEntered(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				if (accCheck) {
+				Media sound = new Media(new File("horizontal.mp3").toURI().toString());
+				MediaPlayer mp = new MediaPlayer(sound);
+				mp.play();}
+			}
         });
         
         //smooth filter
@@ -125,6 +162,17 @@ public class WorkBenchPage extends Application {
             	sb.setType(2);
             }
         });
+        smooth.setOnMouseEntered(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				if (accCheck) {
+				Media sound = new Media(new File("smooth.mp3").toURI().toString());
+				MediaPlayer mp = new MediaPlayer(sound);
+				mp.play();}
+			}
+        });
         
         //rough filter
         Hyperlink rough = new Hyperlink(" rough ");
@@ -140,6 +188,17 @@ public class WorkBenchPage extends Application {
             		//connect to filter class
             	sb.setType(1);
             }
+        });
+        rough.setOnMouseEntered(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				if (accCheck) {
+				Media sound = new Media(new File("rough.mp3").toURI().toString());
+				MediaPlayer mp = new MediaPlayer(sound);
+				mp.play();}
+			}
         });
         
       //random filter
@@ -157,7 +216,17 @@ public class WorkBenchPage extends Application {
             	sb.setType(6);
             }
         });
-        
+        random.setOnMouseEntered(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				if (accCheck) {
+				Media sound = new Media(new File("random.mp3").toURI().toString());
+				MediaPlayer mp = new MediaPlayer(sound);
+				mp.play();}
+			}
+        });
 
         //login button
        	Hyperlink login = new Hyperlink(" login ");
@@ -173,6 +242,17 @@ public class WorkBenchPage extends Application {
                 SignUpLogIn s = new SignUpLogIn();
                 s.start(primaryStage);
             }
+        });
+        login.setOnMouseEntered(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				if (accCheck) {
+				Media sound = new Media(new File("login.mp3").toURI().toString());
+				MediaPlayer mp = new MediaPlayer(sound);
+				mp.play();}
+			}
         });
         
         Hyperlink save = new Hyperlink(" save ");
@@ -246,12 +326,38 @@ public class WorkBenchPage extends Application {
                 s.start(primaryStage);
             }
         });
+        glitch.setOnMouseEntered(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				if (accCheck) {
+				Media sound = new Media(new File("Glitch.mp3").toURI().toString());
+				MediaPlayer mp = new MediaPlayer(sound);
+				mp.play();}
+			}
+        });
+      
+      //accessibility button
+       	Hyperlink acc = new Hyperlink("Accessibility");
+        acc.setId("share");
+        acc.setTranslateY(280);
+        acc.setTranslateX(-480);
+        acc.setBorder(Border.EMPTY);
+        acc.setTextFill(Color.BLACK);
+        acc.setOnAction(new EventHandler<ActionEvent>() {
+        	 
+            @Override
+            public void handle(ActionEvent event) {
+            	accCheck = !accCheck;
+            }
+        });
         
       //share button
         HostServicesDelegate hostServices = HostServicesFactory.getInstance(this);
        	Hyperlink share = new Hyperlink("share");
         share.setId("share");
-        share.setTranslateY(270);
+        share.setTranslateY(280);
         share.setTranslateX(500);
         share.setBorder(Border.EMPTY);
         share.setTextFill(Color.BLACK);
@@ -309,6 +415,7 @@ public class WorkBenchPage extends Application {
         root.getChildren().add(glitch);
         root.getChildren().add(workFrame);
         root.getChildren().add(share);
+        root.getChildren().add(acc);
         p.toFront();
         sb.toFront();
         sb.setType(6);
