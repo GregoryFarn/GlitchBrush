@@ -11,6 +11,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.sun.deploy.uitoolkit.impl.fx.HostServicesFactory;
+import com.sun.javafx.application.HostServicesDelegate;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -244,6 +247,25 @@ public class WorkBenchPage extends Application {
             }
         });
         
+      //share button
+        HostServicesDelegate hostServices = HostServicesFactory.getInstance(this);
+       	Hyperlink share = new Hyperlink("share");
+        share.setId("share");
+        share.setTranslateY(270);
+        share.setTranslateX(500);
+        share.setBorder(Border.EMPTY);
+        share.setTextFill(Color.BLACK);
+        share.setOnAction(new EventHandler<ActionEvent>() {
+        	 
+            @Override
+            public void handle(ActionEvent event) {
+            	hostServices.showDocument("https://www.facebook.com/dialog/share?"
+                 		+ "app_id=589605958083859&display=popup&"
+                 		+ "href=https://github.com/GregoryFarn/GlitchBrush"
+                 		+ "&hashtag=#GlitchArt");
+            }
+        });
+        
         //work frame
         Rectangle workFrame = new Rectangle();
         workFrame.setId("navbar");
@@ -277,6 +299,7 @@ public class WorkBenchPage extends Application {
         root.getChildren().add(rough);
         root.getChildren().add(random);
         
+        
         if(!SignUpLogIn.loginCheck()) {
         	root.getChildren().add(login);
         }
@@ -285,6 +308,7 @@ public class WorkBenchPage extends Application {
         }
         root.getChildren().add(glitch);
         root.getChildren().add(workFrame);
+        root.getChildren().add(share);
         p.toFront();
         sb.toFront();
         sb.setType(6);
