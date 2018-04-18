@@ -4,6 +4,7 @@ package application;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,8 +15,10 @@ import java.util.ArrayList;
 
 import com.sun.deploy.uitoolkit.impl.fx.HostServicesFactory;
 import com.sun.javafx.application.HostServicesDelegate;
+import javax.imageio.ImageIO;
 
 import javafx.application.Application;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -31,6 +34,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class WorkBenchPage extends Application {
@@ -306,9 +310,17 @@ public class WorkBenchPage extends Application {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-            	
-            	
-            }
+            		FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("Save Image");
+                File file = fileChooser.showSaveDialog(primaryStage);
+                if (file != null) {
+                    try {
+                        ImageIO.write(SwingFXUtils.fromFXImage(p.wi,
+                            null), "png", file);
+                    } catch (IOException ex) {
+                        System.out.println(ex.getMessage());
+                    }
+                }}
         });
         
         //logo button
