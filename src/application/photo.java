@@ -110,11 +110,8 @@ public class photo {
 		iv.toFront();
 	}
 	public void resetPhoto() {
-		wi=temp;
+		wi =new WritableImage(pr,(int)image.getWidth(),(int)image.getHeight());
 		iv.setImage(wi);
-	}
-	public void setTemp() {
-		temp = wi;
 	}
 	// RESET READER TO GLITCH THE NEW PHOTO AFTER EDITS, OTHERWISE IT GLITCHES THE
 		// ORIGINAL PHOTO

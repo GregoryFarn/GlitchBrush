@@ -4,6 +4,8 @@ package application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -104,6 +106,17 @@ public class selectionBox {
 		            public void handle(MouseEvent e) {
 		            }
 		        });
+		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			@Override
+			public void handle(KeyEvent e) {
+				if(e.getCode()==KeyCode.ESCAPE) {
+					p.resetPhoto();
+				}
+				else if(e.getCode()==KeyCode.A) {
+					p.resetReader();
+				}
+			}
+		});
 
 	}
 
