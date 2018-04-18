@@ -1,8 +1,10 @@
 package application;
 
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,10 +13,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import com.sun.deploy.uitoolkit.impl.fx.HostServicesFactory;
-import com.sun.javafx.application.HostServicesDelegate;
+import javax.imageio.ImageIO;
 
 import javafx.application.Application;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -27,6 +29,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class WorkBenchPage extends Application {
@@ -44,7 +47,7 @@ public class WorkBenchPage extends Application {
         Font font = Font.loadFont(getClass().getResourceAsStream("desdemon.ttf"), 20);
         StackPane root = new StackPane();
         Scene scene = new Scene(root, 1080, 600);
-        photo p = new photo(root, scene, url);
+        photo p = new photo(root, scene, "images.jpg");
 		selectionBox sb = new selectionBox(root, scene, p);
         
         //nav bar rectangle
@@ -226,9 +229,19 @@ public class WorkBenchPage extends Application {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+            		FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("Save Image");
+                File file = fileChooser.showSaveDialog(primaryStage);
+                if (file != null) {
+                    try {
+                        ImageIO.write(SwingFXUtils.fromFXImage(p.wi,
+                            null), "png", file);
+                    } catch (IOException ex) {
+                        System.out.println(ex.getMessage());
+                    }
             	
             	
-            }
+                }}
         });
         
         //logo button
@@ -244,25 +257,6 @@ public class WorkBenchPage extends Application {
             public void handle(ActionEvent event) {
                 Main s = new Main();
                 s.start(primaryStage);
-            }
-        });
-        
-      //share button
-        HostServicesDelegate hostServices = HostServicesFactory.getInstance(this);
-       	Hyperlink share = new Hyperlink("share");
-        share.setId("share");
-        share.setTranslateY(270);
-        share.setTranslateX(500);
-        share.setBorder(Border.EMPTY);
-        share.setTextFill(Color.BLACK);
-        share.setOnAction(new EventHandler<ActionEvent>() {
-        	 
-            @Override
-            public void handle(ActionEvent event) {
-            	hostServices.showDocument("https://www.facebook.com/dialog/share?"
-                 		+ "app_id=589605958083859&display=popup&"
-                 		+ "href=https://github.com/GregoryFarn/GlitchBrush"
-                 		+ "&hashtag=#GlitchArt");
             }
         });
         
@@ -298,17 +292,14 @@ public class WorkBenchPage extends Application {
         root.getChildren().add(smooth);
         root.getChildren().add(rough);
         root.getChildren().add(random);
-        
-        
         if(!SignUpLogIn.loginCheck()) {
-        	root.getChildren().add(login);
+        root.getChildren().add(login);
         }
         else {
         	root.getChildren().add(save);
         }
         root.getChildren().add(glitch);
         root.getChildren().add(workFrame);
-        root.getChildren().add(share);
         p.toFront();
         sb.toFront();
         sb.setType(6);
