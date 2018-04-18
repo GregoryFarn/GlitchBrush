@@ -1,5 +1,6 @@
 package application;
 
+
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -47,7 +48,6 @@ public class selectionBox {
 		cs.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent e) {
-
 				startX = e.getX();
 				startY = e.getY();
 				rect.setLayoutX(startX + p.getX());
@@ -63,7 +63,6 @@ public class selectionBox {
 				double x = e.getX();
 				double y = e.getY();
 				double pw = p.getWidth();
-				double py = p.getY();
 				double ph = p.getHeight();
 				if (x < 0) {
 					if (y < 0) {
@@ -101,6 +100,10 @@ public class selectionBox {
 				pixelSort();
 			}
 		});
+		cs.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
+		            public void handle(MouseEvent e) {
+		            }
+		        });
 
 	}
 
@@ -215,7 +218,6 @@ public class selectionBox {
 			pixelSort.colorFlipsSide(this, p);
 		} else if (filterType == 6) {
 			pixelSort.colorHash(this, p);
-			pixelSort.colorHashSide(this, p);
 		}
 		else {
 		}

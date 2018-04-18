@@ -25,7 +25,7 @@ public class WorkBenchPage extends Application {
         Font font = Font.loadFont(getClass().getResourceAsStream("desdemon.ttf"), 20);
         StackPane root = new StackPane();
         Scene scene = new Scene(root, 1080, 600);
-        photo p = new photo(root, scene, "rainbow1.png");
+        photo p = new photo(root, scene, "apple.jpg");
 		selectionBox sb = new selectionBox(root, scene, p);
         
         //nav bar rectangle

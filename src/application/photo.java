@@ -22,6 +22,7 @@ public class photo {
 	double y;
 	PixelReader pr;
 	WritableImage wi;
+	WritableImage temp;
 	PixelWriter pw;
 	int width;
 	int height;
@@ -108,8 +109,15 @@ public class photo {
 	public void toFront() {
 		iv.toFront();
 	}
+	public void resetPhoto() {
+		wi=temp;
+		iv.setImage(wi);
+	}
+	public void setTemp() {
+		temp = wi;
+	}
 	// RESET READER TO GLITCH THE NEW PHOTO AFTER EDITS, OTHERWISE IT GLITCHES THE
-	// ORIGINAL PHOTO
+		// ORIGINAL PHOTO
 	public void resetReader() {
 		pr = wi.getPixelReader();
 	}

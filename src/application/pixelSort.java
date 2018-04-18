@@ -21,7 +21,6 @@ public class pixelSort {
 				p.getWI().getPixelWriter().setColor(i, j, vc.get(j - (int) sb.getTopY()));
 			}
 		}
-		p.resetReader();
 	}
 
 	// SELECTION SORT METHOD
@@ -64,7 +63,6 @@ public class pixelSort {
 				p.getWI().getPixelWriter().setColor(i, j, pq.poll());
 			}
 		}
-		p.resetReader();
 	}
 
 	public static void colorHash(selectionBox sb, photo p) {
@@ -80,7 +78,6 @@ public class pixelSort {
 
 		}
 		
-		p.resetReader();
 
 	}
 	public static void colorHashSide(selectionBox sb, photo p) {
@@ -95,8 +92,6 @@ public class pixelSort {
 			}
 
 		}
-		
-		p.resetReader();
 
 	}
 
@@ -111,9 +106,6 @@ public class pixelSort {
 			}
 
 		}
-
-		p.resetReader();
-
 	}
 	public static void colorFlipsSide(selectionBox sb, photo p) {
 		for (int j = (int) sb.getTopY(); j < (int) sb.getBottomY(); j++) {
@@ -126,8 +118,6 @@ public class pixelSort {
 			}
 
 		}
-
-		p.resetReader();
 
 	}
 
@@ -165,7 +155,5 @@ public class pixelSort {
 			}
 
 		}
-
-		p.resetReader();
 	}
 }
