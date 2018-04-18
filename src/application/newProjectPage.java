@@ -14,8 +14,11 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
@@ -24,7 +27,7 @@ import javafx.stage.Stage;
 
 public class newProjectPage extends Application {
 	private Desktop desktop = Desktop.getDesktop();
-	
+	static boolean accCheck = false;
 	static String proj;
 	
 	public static String getProjectName() {
@@ -77,6 +80,17 @@ public class newProjectPage extends Application {
                 }
             }
         });
+        importButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				if (accCheck) {
+				Media sound = new Media(new File("importphoto.mp3").toURI().toString());
+				MediaPlayer mp = new MediaPlayer(sound);
+				mp.play();}
+			}
+        });
         
         final Hyperlink joinButton = new Hyperlink("Join Project");
         joinButton.setTranslateY(20);
@@ -91,12 +105,39 @@ public class newProjectPage extends Application {
             		
             }
         });
+        joinButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				if (accCheck) {
+				Media sound = new Media(new File("joinproject.mp3").toURI().toString());
+				MediaPlayer mp = new MediaPlayer(sound);
+				mp.play();}
+			}
+        });
+        
+      //accessibility button
+       	Hyperlink acc = new Hyperlink("Accessibility");
+        acc.setId("share");
+        acc.setTranslateY(280);
+        acc.setTranslateX(-480);
+        acc.setBorder(Border.EMPTY);
+        acc.setTextFill(Color.BLACK);
+        acc.setOnAction(new EventHandler<ActionEvent>() {
+        	 
+            @Override
+            public void handle(ActionEvent event) {
+            	accCheck = !accCheck;
+            }
+        });
         
         
         StackPane root = new StackPane();
         root.getChildren().add(nameField);
         root.getChildren().add(importButton);
         root.getChildren().add(joinButton);
+        root.getChildren().add(acc);
         Scene scene = new Scene(root, 1080, 600);
         primaryStage.setScene(scene);
         java.net.URL url = this.getClass().getResource("NewProjectPage.css");

@@ -19,3 +19,11 @@
 	-fx-font-size: 50px;
    -fx-font-family: "Desdemona";
 }
+
+#share .text{
+	-fx-text-fill: #000000;
+	-fx-font-size: 20px;
+   -fx-font-family: "Desdemona";
+   -fx-strikethrough: true;
+	-fx-underline: false;
+}
