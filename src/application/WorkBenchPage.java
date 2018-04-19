@@ -43,6 +43,36 @@ public class WorkBenchPage extends Application {
 	public static void setProject(String x) {
 		url = x;
 	}
+	public static String getProjectName(int userID, String url) throws ClassNotFoundException, SQLException {
+		String driverClassName = "com.mysql.jdbc.Driver";
+	   	String dbURL = "jdbc:mysql://localhost/GlitchUsers?user=root&password=root&useSSL=false";
+	   		 
+		Connection conn = null; //create the connection to database
+		Statement st = null; //executes any sql command
+		PreparedStatement ps = null;
+		ResultSet rs = null; //retrieve data that comes back (from select statement), a table	
+			
+		Class.forName(driverClassName);
+		conn = DriverManager.getConnection(dbURL);
+		st = conn.createStatement();
+		ps = conn.prepareStatement(" SELECT s.imageID, s.userID, s.imageName");
+		rs = st.executeQuery("SELECT * FROM Images;");
+		
+		
+		String out = "";
+		
+		while(rs.next()) {
+			int userID_ = rs.getInt("userID");
+			String url_ = rs.getString("imageName");
+			String projName = rs.getString("projectName");
+			
+			if(userID_ == userID && url_.equals(url)) {
+				
+				out = projName;
+			}
+		}
+		return out;	
+	}
 	
 	public static void main(String[] args) {
         launch(args);
@@ -273,33 +303,83 @@ public class WorkBenchPage extends Application {
             	//only save when logged in
             	try {
             		
+            		FileChooser fileChooser = new FileChooser();
+                    fileChooser.setTitle("Save Image");
+                    File file = fileChooser.showSaveDialog(primaryStage);
+                    if (file != null) {
+                        try {
+                            ImageIO.write(SwingFXUtils.fromFXImage(p.wi,
+                                null), "png", file);
+                        } catch (IOException ex) {
+                            System.out.println(ex.getMessage());
+                        }
+                    }
+                    
+                    System.out.println("new save path: " + file.getAbsolutePath().toString());
+            		
             		int user = SignUpLogIn.getUserID();
 					ArrayList<String> projects = UserPage.getProjects(user);
 					boolean createNew = true;
+					url = url.replace("\\\\", "\\");
 					
-					String projectName = newProjectPage.getProjectName();
+					String projectName = getProjectName(user, url);
+					
+					System.out.println("url: " + url);
+					System.out.println("projectname: " + projectName);
 					
 					for(int i=0; i<projects.size(); i++) {
+						System.out.println("comparing to: " + projects.get(i));
 						if(projects.get(i).equals(url)) {
 							//a url already exists for this project
 							createNew = false;
 						}
 					}
 					
-					if(createNew) {
+					String driverClassName = "com.mysql.jdbc.Driver";
+		   	   		String dbURL = "jdbc:mysql://localhost/GlitchUsers?user=root&password=root&useSSL=false";
+		   	   		 
+					Connection conn = null; //create the connection to database
+	   				Statement st = null; //executes any sql command
+	   				PreparedStatement ps = null;
+	   				ResultSet rs = null; //retrieve data that comes back (from select statement), a table	
+	   				
+	   				Class.forName(driverClassName);
+	   				conn = DriverManager.getConnection(dbURL);
+	   				st = conn.createStatement();
+	   				ps = conn.prepareStatement(" SELECT s.imageID, s.userID, s.imageName");
+	   				rs = st.executeQuery("SELECT * FROM Images;");
+	   				
+	   				int imgID = 0;
+					
+					if(!createNew) {
 						
-						String driverClassName = "com.mysql.jdbc.Driver";
-			   	   		String dbURL = "jdbc:mysql://localhost/GlitchUsers?user=root&password=root&useSSL=false";
-			   	   		 
-						Connection conn = null; //create the connection to database
-		   				Statement st = null; //executes any sql command
-		   				PreparedStatement ps = null;
-		   				ResultSet rs = null; //retrieve data that comes back (from select statement), a table	
-		   				
-		   				Class.forName(driverClassName);
-		   				conn = DriverManager.getConnection(dbURL);
-		   				st = conn.createStatement();
-		   				
+						while(rs.next()) { //as long as there are more rows
+							int imageID = rs.getInt("imageID");
+							int userID = rs.getInt("userID");
+							String projName = rs.getString("projectName");
+							
+							if(user == userID && projName.equals(projectName)) {
+								imgID = imageID;
+							}
+		
+						}
+						
+						System.out.println("updating image: " + imgID);
+						
+						String editted = file.getAbsolutePath().toString();
+						
+						editted = editted.replace("\\", "\\\\");
+						ps = conn.prepareStatement("update images set imageName= '" + editted 
+								+ "' where imageID = " + imgID);
+						
+						ps.executeUpdate();
+						
+					}
+					
+					else if(createNew) {
+						
+						System.out.println("creating new");
+
 						ps = conn.prepareStatement("INSERT INTO Images (userID,imageName,projectName) VALUES('" 
   								+ user + "','" + url + "','" + projectName + "')");
 						
@@ -310,17 +390,10 @@ public class WorkBenchPage extends Application {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-            		FileChooser fileChooser = new FileChooser();
-                fileChooser.setTitle("Save Image");
-                File file = fileChooser.showSaveDialog(primaryStage);
-                if (file != null) {
-                    try {
-                        ImageIO.write(SwingFXUtils.fromFXImage(p.wi,
-                            null), "png", file);
-                    } catch (IOException ex) {
-                        System.out.println(ex.getMessage());
-                    }
-                }}
+
+            }
+
+            
         });
         
         //logo button
