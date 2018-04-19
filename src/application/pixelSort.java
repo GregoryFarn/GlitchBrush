@@ -80,11 +80,25 @@ public class pixelSort {
 				vcc.get(i-(int)sb.getTopX()).add(cht.get(j-(int)sb.getTopY()));
 			}
 		}
+		Vector<Vector<Color>> vcc2 = new Vector<Vector<Color>>();
+		for (int i = (int) sb.getTopY(); i < (int) sb.getBottomY(); i++) {
+			vcc2.add(new Vector<Color>());
+		}
+		for (int i = (int) sb.getTopY(); i < (int) sb.getBottomY(); i++) {
+			colorHashTable cht = new colorHashTable((int) sb.getBottomX() - (int) sb.getTopX());
+			for (int j = (int) sb.getTopX(); j < (int) sb.getBottomX(); j++) {
+				cht.put(rand.nextInt((int) sb.getBottomX() - (int) sb.getTopX()), vcc.get(j-(int)sb.getTopX()).get(i-(int)sb.getTopY()));
+			}
+			for (int j = (int) sb.getTopX(); j < (int) sb.getBottomX(); j++) {
+				vcc2.get(i-(int)sb.getTopY()).add(cht.get(j-(int)sb.getTopX()));
+			}
 
+		}
+		
 		for (int i = (int) sb.getTopX(); i < (int) sb.getBottomX(); i++) {
 			for (int j = (int) sb.getTopY(); j < (int) sb.getBottomY(); j++) {
 				p.getWI().getPixelWriter().setColor(i, j,
-						vcc.get((int) (i - sb.getTopX())).get((int) (j - sb.getTopY())));
+						vcc2.get((int) (j - sb.getTopY())).get((int) (i - sb.getTopX())));
 			}
 		}
 	}
