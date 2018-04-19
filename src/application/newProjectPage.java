@@ -65,7 +65,7 @@ public class newProjectPage extends Application {
             public void handle(ActionEvent event) {
             		File file = fileChooser.showOpenDialog(primaryStage);
                 if (file != null) {
-                	 proj = nameField.getText();
+                	 	proj = nameField.getText();
                 		//do something with file here
                 		String dataForSQL = file.getAbsolutePath();
                 		System.out.println(dataForSQL);
