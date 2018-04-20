@@ -1,8 +1,11 @@
 package application;
 
+import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
@@ -12,9 +15,7 @@ import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.StackPane;
 
-public class photo {
-	StackPane gr;
-	Scene sc;
+public class photo implements Serializable {
 	Canvas cs;
 	Image image;
 	ImageView iv;
@@ -28,17 +29,18 @@ public class photo {
 	int height;
 	int dispX;
 	int dispY;
-
+	boolean edited;
+	String type;
 	// WILL FIT TO SIZE OF THE SCENE PROVIDED (fileAdd is ADDRESS OF PICTURE)
 	public photo(StackPane gr, Scene scene, String fileAdd) {
+		edited = false;
 		this.gr = gr;
-		this.sc = scene;
 		try {
 			image = new Image(new FileInputStream(fileAdd));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
+		type = fileAdd.substring(fileAdd.indexOf('.'));
 		
 		width = 900;
 		height = 500;
@@ -113,9 +115,25 @@ public class photo {
 		wi =new WritableImage(pr,(int)image.getWidth(),(int)image.getHeight());
 		iv.setImage(wi);
 	}
+	public void resetPhoto(PixelReader PR) {
+		wi = new WritableImage(PR,(int)image.getWidth(),(int)image.getHeight());
+		iv.setImage(wi);
+	}
 	// RESET READER TO GLITCH THE NEW PHOTO AFTER EDITS, OTHERWISE IT GLITCHES THE
 		// ORIGINAL PHOTO
 	public void resetReader() {
 		pr = wi.getPixelReader();
+	}
+	public boolean getEdit() {
+		return edited;
+	}
+	public void setEdit(boolean bool) {
+		edited = bool;
+	}
+	public String getType() {
+		return type;
+	}
+	public BufferedImage returnBI() {
+		return  SwingFXUtils.fromFXImage((Image)wi, null);
 	}
 }

@@ -29,9 +29,10 @@ public class selectionBox {
 	private Canvas cs;
 	private Rectangle rect;
 	private photo p;
-
-	public selectionBox(StackPane root, Scene scene, photo p) {
+	private WorkBenchPage wbp;
+	public selectionBox(StackPane root, Scene scene, photo p,WorkBenchPage wbp) {
 		this.p = p;
+		this.wbp=wbp;
 		filterType = 0;
 		rect = new Rectangle(0, 0, 0, 0);
 		rect.setFill(Color.TRANSPARENT);
@@ -114,6 +115,9 @@ public class selectionBox {
 				}
 				else if(e.getCode()==KeyCode.A) {
 					p.resetReader();
+
+					System.out.println("created");
+					wbp.activate();
 				}
 			}
 		});

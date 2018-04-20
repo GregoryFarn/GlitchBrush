@@ -1,9 +1,11 @@
 package application;
 	
+import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.layout.Border;
@@ -26,13 +28,15 @@ public class Main extends Application {
 	        suli.setBorder(Border.EMPTY);
 	        suli.setTextFill(Color.BLACK);
 	        suli.setOnAction(new EventHandler<ActionEvent>() {
-	 
+	        
 	            @Override
 	            public void handle(ActionEvent event) {
 	                DirectionPage d = new DirectionPage();
 	                d.start(primaryStage);
+	                
 	            }
 	        });
+	        
 	        
 	        
 	        StackPane root = new StackPane();

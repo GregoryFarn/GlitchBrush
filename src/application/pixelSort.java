@@ -62,6 +62,7 @@ public class pixelSort {
 			for (int j = (int) sb.getTopY(); j < (int) sb.getBottomY(); j++) {
 				p.getWI().getPixelWriter().setColor(i, j, pq.poll());
 			}
+			
 		}
 	}
 
