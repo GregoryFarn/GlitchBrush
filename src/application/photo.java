@@ -34,7 +34,6 @@ public class photo implements Serializable {
 	// WILL FIT TO SIZE OF THE SCENE PROVIDED (fileAdd is ADDRESS OF PICTURE)
 	public photo(StackPane gr, Scene scene, String fileAdd) {
 		edited = false;
-		this.gr = gr;
 		try {
 			image = new Image(new FileInputStream(fileAdd));
 		} catch (FileNotFoundException e) {

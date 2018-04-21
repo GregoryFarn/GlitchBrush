@@ -30,9 +30,6 @@ public abstract class NetworkConnection {
     public void closeConnection() throws Exception {
         connThread.socket.close();
     }
-    public Socket getSocket() {
-    	return connThread.socket;
-    }
 
     protected abstract boolean isServer();
     
@@ -49,7 +46,6 @@ public abstract class NetworkConnection {
 
         @Override
         public void run() {
-        	System.out.println("Connected");
             try (ServerSocket server = isServer() ? new ServerSocket(getPort()) : null;
                     Socket socket = isServer() ? server.accept() : new Socket(getIP(), getPort());
                     ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
@@ -57,7 +53,6 @@ public abstract class NetworkConnection {
 
                 this.socket = socket;
                 this.out = out;
-                System.out.println("Connected");
                 socket.setTcpNoDelay(true);
 
                 
@@ -73,6 +68,5 @@ public abstract class NetworkConnection {
                 onReceiveCallback.accept("Connection closed");
             }
         }
-       
     }
 }

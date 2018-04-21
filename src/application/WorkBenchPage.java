@@ -1,9 +1,8 @@
 package application;
 
+
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,6 +13,8 @@ import java.util.ArrayList;
 
 import com.sun.deploy.uitoolkit.impl.fx.HostServicesFactory;
 import com.sun.javafx.application.HostServicesDelegate;
+import com.sun.xml.internal.ws.util.StringUtils;
+
 import javax.imageio.ImageIO;
 
 import javafx.application.Application;
@@ -24,8 +25,6 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.PixelReader;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.StackPane;
@@ -41,9 +40,11 @@ public class WorkBenchPage extends Application {
 	static boolean accCheck = false;
 	static String url;
 	private photo p;
+	private selectionBox sb;
 	private boolean isServer = false;
 	private NetworkConnection connection = isServer ? createServer() : createClient();
-
+	private StackPane root;
+	private Scene scene;
 	public static void setProject(String x) {
 		url = x;
 	}
@@ -77,9 +78,9 @@ public class WorkBenchPage extends Application {
 		}
 		return out;
 	}
+
 	@Override
 	public void init() throws Exception {
-		System.out.println("init");
 		connection.startConnection();
 	}
 
@@ -98,10 +99,10 @@ public class WorkBenchPage extends Application {
 		}
 		primaryStage.setTitle("New Project Page");
 		Font font = Font.loadFont(getClass().getResourceAsStream("desdemon.ttf"), 20);
-		StackPane root = new StackPane();
-		Scene scene = new Scene(root, 1080, 600);
+		 root = new StackPane();
+		 scene = new Scene(root, 1080, 600);
 		p = new photo(root, scene, url);
-		selectionBox sb = new selectionBox(root, scene, p, this);
+		 sb = new selectionBox(root, scene, p, this);
 
 		// nav bar rectangle
 		Rectangle navbar = new Rectangle();
@@ -531,44 +532,67 @@ public class WorkBenchPage extends Application {
 		primaryStage.show();
 	}
 
-	private Server createServer() {
-		System.out.println("Server");
-		return new Server(55555, data -> {
-			Platform.runLater(() -> {// runLater is a javafx thing
-				
-				// handling the data goes here!
-				System.out.println(data);
-				
-			});
-		});
-	}
+	 private Server createServer() {
+	        return new Server(55555, data -> {
+	            Platform.runLater(() -> {//runLater is a javafx thing
+	            	String y = data.toString();
+	            	String[] words = y.split(" ");
+	            	if(words[0].length()!=1) {
+	            		
+	            	}
+	            	else {
+	            	selectionBox sb2 = new selectionBox(root,scene,p,this);
+	            	sb2.setFilterType(Integer.parseInt(words[0]));
+	            	sb2.setTopX((int)Double.parseDouble(words[1]));
+	            	sb2.setTopY((int)Double.parseDouble(words[2]));
+	            	sb2.setBottomX((int)Double.parseDouble(words[3]));
+	            	sb2.setBottomY((int)Double.parseDouble(words[4]));
+	            	sb2.pixelSort();
+	            	}
+	            });
+	        });
+	    }
+
 
 	public void activate() {
+
 		try {
-			connection.send(p);
+			String x = sb.getFilterType() + " "+sb.getTopX()+" "+sb.getTopY()+" "+sb.getBottomX()+" "+sb.getBottomY();
+			connection.send(x);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
 
 	private Client createClient() {
-		// right now it's connected to localhost
-		System.out.println("Client");
-		return new Client("localhost", 55555, data -> {
-			Platform.runLater(() -> {
-
-				System.out.println(data);
-					//p.resetPhoto(((photo)(new ObjectInputStream((InputStream)data)).readObject()).getPR());
-				
-
-			});
-		});
-	}
+    	//right now it's connected to localhost
+        return new Client("127.0.0.1", 55555, data -> {
+            Platform.runLater(() -> {
+            	
+            	String y = data.toString();
+            	String[] words = y.split(" ");
+            	if(words[0].length()!=1) {
+            		
+            	}
+            	else {
+            	selectionBox sb2 = new selectionBox(root,scene,p,this);
+            	sb2.setFilterType(Integer.parseInt(words[0]));
+            	sb2.setTopX((int)Double.parseDouble(words[1]));
+            	sb2.setTopY((int)Double.parseDouble(words[2]));
+            	sb2.setBottomX((int)Double.parseDouble(words[3]));
+            	sb2.setBottomY((int)Double.parseDouble(words[4]));
+            	sb2.pixelSort();
+            	}
+                                
+                
+            });
+        });
+    }
 
 	public static void main(String[] args) {
 		launch(args);
 	}
-
 
 }
