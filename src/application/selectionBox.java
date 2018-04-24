@@ -99,6 +99,8 @@ public class selectionBox {
 			@Override
 			public void handle(MouseEvent e) {
 				pixelSort();
+				p.resetReader();
+				wbp.activate();
 			}
 		});
 		cs.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
@@ -112,8 +114,6 @@ public class selectionBox {
 					p.resetPhoto();
 				}
 				else if(e.getCode()==KeyCode.A) {
-					p.resetReader();
-					wbp.activate();
 				}
 			}
 		});

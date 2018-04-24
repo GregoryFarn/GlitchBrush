@@ -344,7 +344,7 @@ public class WorkBenchPage extends Application {
 					int user = SignUpLogIn.getUserID();
 					ArrayList<String> projects = UserPage.getProjects(user);
 					boolean createNew = true;
-					url = url.replace("\\\\", "\\");
+			//		url = url.replace("\\\\", "\\");
 
 					String projectName = getProjectName(user, url);
 

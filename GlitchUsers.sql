@@ -26,8 +26,8 @@ CREATE TABLE Images(
 );
 
 INSERT INTO Images (userID, imageName, projectName)
-	VALUES  (1, 'C:\\Users\\Emily Jin\\eclipse-workspace\\GlitchBrush\\photo.jpg', 'testImage'),
-			(1, 'C:\\Users\\Emily Jin\\eclipse-workspace\\GlitchBrush\\apple.jpg', 'testImage2');
+	VALUES  (1, 'C:\\Users\\007fa\\Documents\\GitHub\\GlitchBrush\\apple.jpg', 'testImage'),
+			(1, 'C:\\Users\\007fa\\Documents\\GitHub\\GlitchBrush\\photo.jpg', 'testImage2');
     
     
     
